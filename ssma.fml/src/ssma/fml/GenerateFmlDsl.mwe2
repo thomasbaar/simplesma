@@ -3,7 +3,7 @@ module ssma.fml.GenerateFmlDsl
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
-
+ 
 var grammarURI = "classpath:/ssma/fml/FmlDsl.xtext"
 var fileExtensions = "fml"
 var projectName = "ssma.fml"
