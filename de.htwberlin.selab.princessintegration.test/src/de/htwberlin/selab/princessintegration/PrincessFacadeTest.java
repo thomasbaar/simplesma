@@ -18,6 +18,8 @@ public class PrincessFacadeTest {
 	static final String inpProvable_1 = "\\universalConstants { int collected; int bill;} \\problem{((true & (collected = (bill - 1))) -> true)} ";
 	static final String inpNonProvable_1 = "\\universalConstants { int collected; int bill;} \\problem{((true & (collected = (bill - 1))) -> false)} ";
 	static final String inpSyntaxError_1 = "\\universalConstants { int collected; int bill;} \\problem{((true & (colected = (bill - 1))) -> false)} ";
+	static final String inpProvableExists_1 = "\\existentialConstants  { int c;} \\problem{(c <5 & c > 3)} ";
+	static final String inpNonProvableExists_1 = "\\existentialConstants  { int c;} \\problem{(c <4 & c > 3)} ";
 	
 	
 	static PrincessFacade out;
@@ -51,6 +53,12 @@ public class PrincessFacadeTest {
 		assertTrue(createInfoMsg("Provable input has not been proven"), result.isProven);
 	}
 	
+	@Test
+	public void testProvableExists() throws Exception{
+		result = out.prove(inpProvableExists_1, "Provable PO");
+		assertTrue(createInfoMsg("Provable input has not been proven"), result.isProven);
+	}
+	
 	// at the beginning, we had problems to prove the same thing twice
 	@Test
 	public void testProvableAgain() throws Exception{
@@ -72,6 +80,13 @@ public class PrincessFacadeTest {
 		assertFalse(createInfoMsg("Nonprovable input has  been proven"), result.isProven);
 		assertEquals("Unexpected countermodel", "bill = 1 & collected = 0", result.counterexample);
 //		System.out.println("Countermodel: " + result.counterexample);
+	}
+	
+	@Test
+	public void testNonProvableExists() throws Exception{
+		result = out.prove(inpNonProvableExists_1, "NonProvableExists PO");
+		assertFalse(createInfoMsg("Nonprovable input has  been proven"), result.isProven);
+		assertEquals("Unexpected countermodel", "true", result.counterexample);  //there is no useful counter-example
 	}
 	
 	@Test(expected=PrincessFacadeException.class)
