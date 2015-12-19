@@ -1,0 +1,5 @@
+vars v
+states start s1 s2
+events ev1
+transitions start => s1; 
+		s1 => s2 ev1 /v = v + 1; 
