@@ -4,6 +4,18 @@
 package ssma.sminv.ui.labeling
 
 import com.google.inject.Inject
+import ssma.sminv.sminvDsl.VarDecl
+import ssma.sminv.sminvDsl.StateDecl
+import ssma.sminv.sminvDsl.EventDecl
+import ssma.sminv.sminvDsl.TransDecl
+import ssma.sminv.sminvDsl.InvDecl
+import ssma.sminv.sminvDsl.Transition
+import ssma.sminv.sminvDsl.Inv
+import ssma.sminv.sminvDsl.NegFml
+import ssma.sminv.sminvDsl.Compound
+import ssma.sminv.sminvDsl.IntConstant
+import ssma.sminv.sminvDsl.VarRef
+import ssma.sminv.sminvDsl.Var
 
 /**
  * Provides labels for EObjects.
@@ -16,14 +28,74 @@ class SminvDslLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLab
 	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-	// Labels and icons can be computed like this:
 	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	//
+	// Declaration nodes
+	//
+	
+	def text(VarDecl d) {
+		"vars"
+	}
+	
+	def text(StateDecl d) {
+		"states"
+	}
+	
+	def text(EventDecl d) {
+		"events"
+	}
+	
+	def text(TransDecl d) {
+		"transitions"
+	}
+	
+	def text(InvDecl d) {
+		"invariants"
+	}
+	
+	//
+	// Transition and invariants and updates
+	// 
+	
+	def text(Transition t) {
+		t.pre.name + " => " + t.post.name
+	}
+	
+	def text(Inv i) {
+		i.state.name + ": "
+	}
+	
+	// can occur within updates
+	def text(Var v) {
+		v.name
+	}
+	
+	//
+	// Rewritten Atomic terms
+	//
+	
+	def text(NegFml f) {
+		"!"
+	}
+	
+	def text(Compound f) {
+		"()"
+	}
+	
+	def text(IntConstant i) {
+		i.value + ""
+	}
+	
+	def text(VarRef vr) {
+		vr.v.name
+	}
+	
+	
+	//
+	// Outline-definitions from Fml-language
+	//
+	//TODO: how can we say, that all other terms (e.g. <-> ) should be outlined
+	//      as defined in the fml-project ????
+	
+	
 }

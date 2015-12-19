@@ -57,7 +57,7 @@ Event:
 
 Transition:
 	pre=[State] '=>' post=[State]
-	(ev=[Event])? ('[' g=Term ']')? ('/' act+=Update+)? ';'
+	(ev=[Event])? ('[' g=Term ']')? ('/' act+=Update+)? ';' //TODO: would be better to write g=Guard, due to outlining
 ;
 
 Update:
