@@ -21,11 +21,11 @@ class SminvTermTypeProviderWithVarTest {
 
 	@Test def void boolConstant() { "true".assertBoolType }
 
-	@Test def void compoundBool() {"(false )".assertBoolType}
+	@Test def void compoundBool() {"(true )".assertBoolType}
 
 //	@Test def void compoundInt() {"(45 ) ;".assertIntType}
 //	
-	@Test def void negFml() {"!( 4 < 6 )".assertBoolType}
+	@Test def void negFml() {"!( 4 > 6 )".assertBoolType}
 
 	@Test def void varRef() {"v1 < 6".assertBoolType}
 

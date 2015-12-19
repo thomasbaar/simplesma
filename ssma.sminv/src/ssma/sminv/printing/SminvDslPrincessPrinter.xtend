@@ -14,11 +14,19 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 class SminvDslPrincessPrinter extends SminvDslPrinter {
 
 	def String princessRepr(Term t) {
+		princessRepr(t, true)
+	}
+
+	def String princessRepr(Term t, boolean isUniversal) {
 		val occurringVarNamesInT = t.getAllContentsOfType(typeof(VarRef)).map[v.name].toSet
 		// computation of prefix
 		var prefix = ''''''
 		if (!occurringVarNamesInT.isEmpty) {
+			if (isUniversal){
 			prefix = prefix + '''\universalConstants { '''
+			} else {
+				prefix = prefix + '''\existentialConstants { '''
+			}
 			for (String varname : occurringVarNamesInT) {
 				prefix = prefix + ''' int «varname»;'''
 			}

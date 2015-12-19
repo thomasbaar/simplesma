@@ -38,6 +38,7 @@ class SminvPOGeneratorTest {
 	                            a => c ev1 [v1 > 1 && v1 < 5];
 	                            b => c ;
 	                            b => c ;
+	                            b => a [v1 < 2];
 	               invariants a: v1 > 2;
 	                          b: v1 > 3;
 	                          c: v1 < v2 -> v2 == 23 && v1 >= 11;
@@ -99,5 +100,21 @@ class SminvPOGeneratorTest {
 		po2.assertPrincessReprFromTerm("\\universalConstants {  int v1;} \\problem{ ((v1 > 3) -> (!(true & true))) }")
 
 	}
+	
+		@Test
+	def void deadtransition_small() {
+		val model = small.parse
+//		model.assertNoErrors
+		val t_b_a_1 = model.transitions.get(7)
+		
+		val po = t_b_a_1.PO_AliveTransition
+	
+		po.assertReprFromTerm("((v1 > 3) && (v1 < 2))")
+
+		po.assertPrincessReprFromTerm("\\existentialConstants {  int v1;} \\problem{ ((v1 > 3) & (v1 < 2)) }", false)
+		
+		}
+
+	
 
 }

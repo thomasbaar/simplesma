@@ -68,9 +68,13 @@ class FmlDslUtil {
 	// to be overridden in subclasses with the right type-provider
 	protected def checkSubterm(Term t) {
 		if (! t.typeFor.isBoolean)
-			throw new IllegalArgumentException("")
+			// throwing an exception can abort the validation process and 
+			// shadow other error messages
+//			throw new IllegalArgumentException("")
+			System.out.println("Warning: FmlDslUtil.checkSubterm received non-boolean argument")
 		if (t.eContainer != null)
-			throw new IllegalArgumentException("")
+//			throw new IllegalArgumentException("")
+			System.out.println("Warning: SminvDslUtil.checkSubterm received argument with null-container")
 	}
 
 	enum Op {

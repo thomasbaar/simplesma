@@ -144,8 +144,8 @@ class SminvValidatorTest {
 //	               events ev1 
 //	               transitions  start => a / v1=3;
 //	                            a => c [v1 < 5] / v1 += 1;
-//	               invariants inv a: v1 > 2;
-//	                          inv c: v1 < 5;
+//	               invariants a: v1 > 2;
+//	                          c: v1 < 5;
 //	    '''.parse.assertError(SminvDslPackage.Literals.TRANSITION, SminvDslValidator.TRANSITION_MUST_PRESERVE_INVARIANTS)
 //	}
 	@Test
@@ -197,6 +197,21 @@ class SminvValidatorTest {
 	    '''.parse.assertError(SminvDslPackage.Literals.STATE,
 			SminvDslValidator.OUTGOING_TRANSITIONS_MUST_NOT_BE_NONDETERMINISTIC)
 	}
+	
+	@Test
+	def void transitionDead() {
+		'''vars v1 v2
+	               states start a b c d e
+	               events ev1 
+	               transitions  start => a / v1=3;
+	                            a => b ev1 [v1 < 1];
+	               invariants
+	               		a : v1 > 2;             
+	    '''.parse.assertError(SminvDslPackage.Literals.TRANSITION,
+			SminvDslValidator.TRANSITION_MUST_BE_ALIVE)
+	}
+	
+	
 }
 	
 

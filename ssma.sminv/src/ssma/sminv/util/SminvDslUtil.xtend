@@ -13,25 +13,25 @@ import ssma.sminv.typing.TermTypeProviderWithVar
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 
-class SminvDslUtil extends FmlDslUtil{
-	
+class SminvDslUtil extends FmlDslUtil {
+
 	@Inject extension TermTypeProviderWithVar
 	@Inject extension SminvDslPrinter
-	
-	
-	
+
 	protected override checkSubterm(ssma.fml.fmlDsl.Term t) {
 		if (! t.typeFor.isBoolean)
-			throw new IllegalArgumentException("")
+			// throwing an exception can abort the validation process and 
+			// shadow other error messages
+//			throw new IllegalArgumentException("")
+			System.out.println("Warning: SminvDslUtil.checkSubterm received non-boolean argument")
 		if (t.eContainer != null)
-			throw new IllegalArgumentException("")
+//			throw new IllegalArgumentException("")
+			System.out.println("Warning: SminvDslUtil.checkSubterm received argument with null-container")
 	}
-	
 
 	//
 	// navigation shortcuts
 	//
-	
 	def getInvariants(SminvModel model) {
 		// id is the only feature of SminvModel that can be null
 		if (model.id == null)
@@ -63,19 +63,18 @@ class SminvDslUtil extends FmlDslUtil{
 	def boolean isStartState(State s) {
 		(s.eContainer as StateDecl).states.head == s
 	}
-	
-	def String getPrintName(Transition t){
-		'''«t.pre.name» => «t.post.name» ''' +
-		'''«IF t.ev != null»«t.ev.name» «ENDIF»''' +
-		'''«IF t.g != null»[«t.g.stringRepr»]«ENDIF»''' +
-		'''«IF t.act.size != 0» / «FOR up : t.act»«up.variable.name» «up.op» «up.value.stringRepr» «ENDFOR»«ENDIF»'''
+
+	def String getPrintName(Transition t) {
+		'''«t.pre.name» => «t.post.name» ''' + '''«IF t.ev != null»«t.ev.name» «ENDIF»''' +
+			'''«IF t.g != null»[«t.g.stringRepr»]«ENDIF»''' +
+			'''«IF t.act.size != 0» / «FOR up : t.act»«up.variable.name» «up.op» «up.value.stringRepr» «ENDFOR»«ENDIF»'''
 	}
 
 	def getIncomingTransitions(State s) {
-		s.root.transitions.filter[post==s]
+		s.root.transitions.filter[post == s]
 	}
 
 	def getOutgoingTransitions(State s) {
-		s.root.transitions.filter[pre==s]
+		s.root.transitions.filter[pre == s]
 	}
 }

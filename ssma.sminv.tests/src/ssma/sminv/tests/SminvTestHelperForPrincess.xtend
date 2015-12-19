@@ -25,5 +25,11 @@ class SminvTestHelperForPrincess {
 			t.princessRepr
 		)
 	}
+
+	public def assertPrincessReprFromTerm(Term t, CharSequence expected, boolean isUniversal) {
+		expected.assertEquals(
+			t.princessRepr(isUniversal)
+		)
+	}
 	
 }

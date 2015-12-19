@@ -46,7 +46,7 @@ class SminvPrinterTest {
 	}
 
 	@Test def void testComparison() {
-		"10 <= 5".assertGuardRepr("(10 <= 5)")
+		"10 >= 5".assertGuardRepr("(10 >= 5)")
 	}
 
 
@@ -55,15 +55,15 @@ class SminvPrinterTest {
 	}
 
 	@Test def void testNot() {
-		"!true||false".assertGuardRepr("((!true) || false)")
+		"!true||true".assertGuardRepr("((!true) || true)")
 	}
 
 	@Test def void testNotWithParentheses() {
-		"!(true||false)".assertGuardRepr("(!(true || false))")
+		"!(true&&false)".assertGuardRepr("(!(true && false))")
 	}
 
 	@Test def void testPrecedences() {
-		"!true||false&&1>(1*3+5*2)".assertGuardRepr("((!true) || (false && (1 > ((1 * 3) + (5 * 2)))))")
+		"!true||true&&1<(1*3+5*2)".assertGuardRepr("((!true) || (true && (1 < ((1 * 3) + (5 * 2)))))")
 	}
 	
 	@Test def void testVarRef() {

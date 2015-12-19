@@ -51,6 +51,13 @@ class SminvDslPOGenerator {
 		if(!t1.hasSameEvent(t2)) throw new IllegalArgumentException("expected same event")
 		t1.pre.invariantsCopyConjunction.implies(neg(t1.guardCopy.and(t2.guardCopy)))
 	}
+	
+	def getPO_AliveTransition(Transition t){
+		//TODO: hack; should add exists quantification
+		t.pre.invariantsCopyConjunction.and(t.guardCopy)
+	}
+
+	
 
 	private def hasSamePrestate(Transition t1, Transition t2) {
 		t1.pre == t2.pre

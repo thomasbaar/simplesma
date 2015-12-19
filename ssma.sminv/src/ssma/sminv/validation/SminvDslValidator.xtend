@@ -39,6 +39,7 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 	public static val OUTTRANSITION_NO_GUARD = "outtransition.no.guard"
 	public static val TRANSITION_UPDATES_HAS_UNIQUE_LHSS = "transition.updates.has.unique.lhss"
 	public static val TRANSITION_MUST_PRESERVE_INVARIANTS = "transition.must.preserve.invariants"
+	public static val TRANSITION_MUST_BE_ALIVE = "transition.must.be.alive"
 	public static val INCOMING_TRANSITION_MUST_PRESERVE_INVARIANT = "incoming.transition.must.preserve.invariant"
 	public static val OUTGOING_TRANSITIONS_MUST_NOT_BE_NONDETERMINISTIC = "outgoing.transitions.must.not.be.nondeterministic"
 
@@ -110,7 +111,7 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 	//
 	// temporarily commented out since next one is equivalent
 //	@Check(NORMAL)
-//	def checkTransitionPOWithPrincess(ssma.sminv.sminvDsl.Transition t) {
+//	def checkTransitionPOWithPrincess(published.Sminv.SminvDsl.Transition t) {
 //		val po = t.PO_InvPreservation.princessRepr
 //		var result = princessProver.prove(po, "InvPreservation-PO for transition " + t.toString())
 //
@@ -121,9 +122,7 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 //				TRANSITION_MUST_PRESERVE_INVARIANTS)
 //		}
 //	}
-	
-	
-	
+
 	// here we use PRINCESS
 	@Check(NORMAL) // TODO: substitute with EXPENSIVE here
 	def check_InvPreservation_ForInvariant(Inv inv) {
@@ -136,7 +135,7 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 
 			if (!result.isProven) {
 				error(
-					"the transition " + t.printName +
+					"NOT INVARIANT-PRESERVING: the transition " + t.printName +
 						" does not preserve this invariant, if the transition fires in the following pre-state: " +
 						result.counterexample, SminvDslPackage.Literals.INV__INV,
 					INCOMING_TRANSITION_MUST_PRESERVE_INVARIANT)
@@ -144,8 +143,8 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 			}
 		}
 
-// here we use PRINCESS
-		@Check(NORMAL) 
+		// here we use PRINCESS
+		@Check(NORMAL)
 		def check_OutgoingTransitionOnNondetermismNew(ssma.sminv.sminvDsl.State s) {
 			val outgoingsGroupedByEvent = s.outgoingTransitions.groupBy[t|if(t.ev == null) "" else t.ev.name]
 
@@ -161,7 +160,7 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 					var result = princessProver.prove(po, "NonDeterminism-PO")
 					if (!result.isProven) {
 						error(
-							"the transitions " + t1.printName + " and " + t2.printName +
+							"NON-DETERMINISM: the outgoing transitions " + t1.printName + " and " + t2.printName +
 								"are in conflict and cold both fire in the following pre-state: " +
 								result.counterexample,
 								SminvDslPackage.Literals.STATE__NAME,
@@ -177,6 +176,20 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 					return new ArrayList<Pair<Transition, Transition>>()
 				val t1 = group.head
 				group.tail.map[t2|t1 -> t2] + getPairwiseCombinations(group.tail)
+			}
+
+			// here we use PRINCESS
+			@Check(NORMAL) // TODO: substitute with EXPENSIVE here
+			def check_AliveTransition(Transition t) {
+				val po = t.PO_AliveTransition.princessRepr(false)
+				var result = princessProver.prove(po, "AliveTransition-PO for transition " + t.toString())
+
+				if (!result.isProven) {
+					error(
+						"DEAD TRANSITION: the transition " + t.printName +
+							" is dead; its guard together with the invariant(s) of the pre-state is not satisfiable",
+						SminvDslPackage.Literals.TRANSITION__G, TRANSITION_MUST_BE_ALIVE)
+				}
 			}
 
 }
