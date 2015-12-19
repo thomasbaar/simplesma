@@ -1,0 +1,94 @@
+grammar ssma.sminv.SminvDsl with ssma.fml.FmlDsl
+
+generate sminvDsl "http://www.sminv.ssma/SminvDsl"
+
+// This language encodes ordinary state machines (simple ones, without nesting)
+// together with invariants (the originally planned distinction between
+// pure state machines (without invariants) and extended state machines
+// with invariants did not work out.
+//
+// TODO: try to split smpure from sminv once grammar inheritance in 
+//       Xtext 2.9 really works
+//
+// This grammar inherits from language fml
+//
+// NOTE: add MF-dep from . to ssma.fml (make sure everything is exported there)
+// NOTE: add MF-dep from ..tests to ssma.fml.tests
+// NOTE: add MF-dep from ..tests to ssma.fml   //TODO: try to get rid of this one day ...
+// NOTE: add MF-dep from ..ui to ssma.fml.ui
+//
+// NOTE: Do not forget to inject an own TermTypeProvider
+//       in ...RuntimeModule.jav
+
+
+SminvModel:
+	vd=VarDecl
+	sd=StateDecl
+	ed=EventDecl
+	td=TransDecl
+	(id=InvDecl)?;
+
+// all variables are of type int
+// all variables are globally visible
+VarDecl:
+	{VarDecl}
+	'vars'  vars+=Var*;
+
+	// first state is considered to be start state		
+StateDecl:
+	'states' states+=State+;
+
+EventDecl:
+	{EventDecl}
+	'events' events+=Event*;
+
+TransDecl:
+	{TransDecl}
+	'transitions' trans+=Transition*;
+
+Var:
+	name=ID;
+
+State:
+	name=ID;
+
+Event:
+	name=ID;
+
+Transition:
+	pre=[State] '=>' post=[State]
+	(ev=[Event])? ('[' g=Term ']')? ('/' act+=Update+)? ';'
+;
+
+Update:
+	variable=[Var] op=('=' | '+=' | '-=') value=Term;
+
+
+// Overwritten imported rule
+//
+// We want to add 'VarRef' as a new kind to 'Atomic' terms
+//
+// NOTE: Xtext recreates here new classes for NegFml, Compound, etc. and does
+//       not take the inherited ones!!! Even for Term is new class is created
+//       but at least this is a subclass of the inherited Term.
+// TODO: find out how to avoid the new creation, since it
+//       forces code-duplication in the TermTypeProvider
+Atomic returns Term:
+	{NegFml} '!' t=Atomic   // NOTE: here we need Atomic instead of Term !!!
+	| {Compound} '(' t=Term ')'  // 
+	| {BoolConstant} value=('true'|'false') 
+	| {IntConstant} value=INT
+	| {VarRef} v=[Var]
+;
+
+
+// support for invariants
+InvDecl:
+	{InvDecl}
+	'invariants' invs+=Inv*;
+	
+	
+Inv:
+	state=[State] ':' inv=Term ';'; 
+
+

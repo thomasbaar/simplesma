@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ssma.sminv/src-gen" editDirectory="/ssma.sminv.edit/src"
+    editorDirectory="/ssma.sminv.editor/src" modelPluginID="ssma.sminv" forceOverwrite="true"
+    modelName="SminvDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="ssma.sminv.edit" editorPluginID="ssma.sminv.editor"
+    runtimeVersion="2.11" usedGenPackages="platform:/resource/ssma.fml/model/generated/FmlDsl.genmodel#//fmlDsl">
+  <genPackages prefix="SminvDsl" basePackage="ssma.sminv" disposableProviderFactory="true"
+      fileExtensions="sminv" ecorePackage="SminvDsl.ecore#/">
+    <genClasses ecoreClass="SminvDsl.ecore#//SminvModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/vd"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/sd"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/ed"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/td"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/id"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//VarDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//VarDecl/vars"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//StateDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//StateDecl/states"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//EventDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//EventDecl/events"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//TransDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//TransDecl/trans"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//Var">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SminvDsl.ecore#//Var/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SminvDsl.ecore#//State/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//Event">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SminvDsl.ecore#//Event/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Transition/pre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Transition/post"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Transition/ev"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Transition/g"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Transition/act"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//Update">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Update/variable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SminvDsl.ecore#//Update/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Update/value"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//Term"/>
+    <genClasses ecoreClass="SminvDsl.ecore#//InvDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//InvDecl/invs"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//Inv">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Inv/state"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Inv/inv"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//NegFml">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//NegFml/t"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//Compound">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//Compound/t"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//BoolConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SminvDsl.ecore#//BoolConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//IntConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SminvDsl.ecore#//IntConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="SminvDsl.ecore#//VarRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//VarRef/v"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

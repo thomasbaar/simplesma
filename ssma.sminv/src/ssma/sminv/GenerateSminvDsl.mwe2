@@ -1,12 +1,12 @@
-module ssma.fml.GenerateFmlDsl
+module ssma.sminv.GenerateSminvDsl
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
- 
-var grammarURI = "classpath:/ssma/fml/FmlDsl.xtext"
-var fileExtensions = "fml"
-var projectName = "ssma.fml"
+
+var grammarURI = "classpath:/ssma/sminv/SminvDsl.xtext"
+var fileExtensions = "sminv"
+var projectName = "ssma.sminv"
 var runtimeProject = "../${projectName}"
 var generateXtendStub = true
 var encoding = "UTF-8"
@@ -15,9 +15,11 @@ Workflow {
     bean = StandaloneSetup {
     	scanClassPath = true
     	platformUri = "${runtimeProject}/.."
-    	// The following two lines can be removed, if Xbase is not used.
-    	registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
-    	registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+//    	// The following two lines can be removed, if Xbase is not used.
+//    	registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+//    	registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+    	registerGeneratedEPackage = "ssma.fml.fmlDsl.FmlDslPackage"
+    	registerGenModelFile = "platform:/resource/ssma.fml/model/generated/FmlDsl.genmodel"
     }
     
     component = DirectoryCleaner {
@@ -73,7 +75,7 @@ Workflow {
     		// Xtend-based API for validation
     		fragment = validation.ValidatorFragment auto-inject {
     		//    composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
-    		//    composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+    		    composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
     		}
     
     		// old scoping and exporting API

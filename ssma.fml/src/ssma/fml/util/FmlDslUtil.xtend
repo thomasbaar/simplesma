@@ -65,7 +65,8 @@ class FmlDslUtil {
 		term
 	}
 
-	private def checkSubterm(Term t) {
+	// to be overridden in subclasses with the right type-provider
+	protected def checkSubterm(Term t) {
 		if (! t.typeFor.isBoolean)
 			throw new IllegalArgumentException("")
 		if (t.eContainer != null)
