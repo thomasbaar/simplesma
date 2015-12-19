@@ -3,11 +3,26 @@
  */
 package ssma.fml.ui.outline
 
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import ssma.fml.fmlDsl.FmlModel
+
 /**
  * Customization of the default outline structure.
  *
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
-class FmlDslOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
+class FmlDslOutlineTreeProvider extends DefaultOutlineTreeProvider {
+	
+	
+	// don't want the root node representing the filename
+	// don't want node for TermWithSeparator
+	def void _createChildren(DocumentRootNode outlineNode, FmlModel model) {
+		model.terms.forEach[
+			tws|
+			createNode(outlineNode, tws.t);
+		]
+	}
+	
 	
 }

@@ -4,6 +4,13 @@
 package ssma.fml.ui.labeling
 
 import com.google.inject.Inject
+import ssma.fml.fmlDsl.IntConstant
+import ssma.fml.fmlDsl.EquivFml
+import ssma.fml.fmlDsl.ImpliesFml
+import ssma.fml.fmlDsl.OrFml
+import ssma.fml.fmlDsl.AndFml
+import ssma.fml.fmlDsl.Compound
+import ssma.fml.fmlDsl.NegFml
 
 /**
  * Provides labels for EObjects.
@@ -17,13 +24,33 @@ class FmlDslLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabel
 		super(delegate);
 	}
 
-	// Labels and icons can be computed like this:
-	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+
+	def text(IntConstant i) {
+		i.value + ""
+	}
+
+	def text(EquivFml f) {
+		"<->"
+	}
+
+	def text(ImpliesFml f) {
+		"->"
+	}
+
+	def text(OrFml f) {
+		"||"
+	}
+
+	def text(AndFml f) {
+		"&&"
+	}
+
+	def text(Compound f) {
+		"()"
+	}
+
+	def text(NegFml f) {
+		"!"
+	}
+
 }
