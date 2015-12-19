@@ -14,6 +14,6 @@ waitingForMoney => paid coinInserted
 paid => idle / collected = 0; 
 //paid => idle; // does not preserve invariant
 idle => waitingForMoney [collected > 0]; // dead transition
-
+ 
 invariants  
 idle : collected == 0;
