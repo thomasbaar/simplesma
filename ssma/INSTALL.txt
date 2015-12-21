@@ -1,0 +1,42 @@
+The repository ssma contains the following files and folders:
+
+LICENSE  - license 
+README.md - Github's readme file
+
+Eclipse projects:
+-----------------
+de.htwberlin.selab.princessintegration (+ .test)  - wrapper Java project for prover PRINCESS + unit tests
+ssma.fml (+ .sdk, .tests, .ui, .examples) - Xtext-projects for a simple expression language needed to express guards, updates, and invariants in simple state machines
+ssma.sminv (+ .sdk, .tests, .ui, .examples) - Xtext-projects for simple state machines; note that some of these projects depend on corresponding project from ssma.fml.*
+
+
+Installation steps:
+-------------------
+- It is assumed you have installed Eclipse with the Xtext-plugin 
+(can be downloaded alltogether from https://www.eclipse.org/Xtext/download.html )
+of the supported version (see README.md)
+
+- Clone the repository ssma on your local machine
+
+- Import all Eclipse projects from Git into your workspace
+
+- Copy .classpath.example to .classpath for all Eclipse projects where possible --
+  Note that .classpath  often contains settings, which are valid only on the local machine.
+  Thus, the file .classpath was not checked-in. Please, copy in each project where you 
+  find .classpath.example this file to .classpath. Since, .classpath.example contains
+  only a proposal for a meaningful .classpath, you should check whether after copying
+  your .classpath has valid entries wrt. your machine.
+  
+- Generate the language infrastructure for project ssma.fml and ssma.sminv --  
+  This is done (as usual in Xtext) by right-click on the project's grammar file
+  (file extension .xtext) and choosing 'Run As > Generate Xtext Artifacts'. Since 
+  the project ssma.sminv depends on ssma.fml, you should start with generating
+  the language infrastructure for ssma.fml.
+  
+- Now, all errors in the pane 'Problems' should have disappeared :-) 
+
+- Start the runtime Eclipse by a right-click on a project 'Run As > Eclipse Application'
+  to see the editors for ssma.fml and ssma.sminv in action. Example input files can be
+  found in ssma.fml.examples and ssma.sminv.examples.
+ 
+
