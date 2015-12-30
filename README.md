@@ -32,8 +32,8 @@ For example, one can constrain
 the value of (some) state variables by a boolean expression, e.g. `myvar > 5 - 2`.
 The expression language is implemented by *ssma.fml* and can be used for formulating  
 invariants on states as well as guards on transitions. Note that all expressions are 
-currently either of type ´Integer´ or ´Boolean´ and no other types are  supported.
-State variables are always of type ´Integer´.
+currently either of type Integer or Boolean and no other types are  supported.
+State variables are always of type Integer.
 
 
 The SSMA toolset can **check several properties** of a state machine that goes **beyond pure syntactic
@@ -63,7 +63,7 @@ together with Xtext 2.8 installed on your machine.
 
 - **YAKINDU** SSMA has been greatly inspired by [Yakindu](http://www.statecharts.org). Compared to Yakindu,
 SSMA does not support a graphical syntax (yet) and has the simpler expression language (e.g.
-all expressions are of type ´Integer´ or ´Boolean´). On the other hand, Yakindu does not allow
+all expressions are of type Integer or Boolean). On the other hand, Yakindu does not allow
 to annotate invariants on a state and  provides pure syntactic checks only.
 
 - **PRINCESS** SSMA uses internally this theorem prover [Princess](http://www.philipp.ruemmer.org/princess.shtml) 
