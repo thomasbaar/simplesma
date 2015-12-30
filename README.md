@@ -2,7 +2,7 @@
 
 ## Overview
 
-The *Simple State Machine Analyzer* (*SSMA* for short) is an [Xtext](www.eclipse.org/xtext)-based
+The *Simple State Machine Analyzer* (*SSMA* for short) is an [Xtext](http://www.eclipse.org/xtext)-based
 toolset for analyzing simple state machines. SSMA has been implemented in
 form of multiple DSLs. From the user's point of view, the DSL *ssma.sminv*
 is the most important one since it allows to create and to interact with 
@@ -29,11 +29,11 @@ on states have not been supported yet.
 
 A **unique feature** of SSMA is the **formulation and verification of invariants on states**. 
 For example, one can constrain
-the value of (some) state variables by a boolean expression, e.g. ´myvar > 5 - 2´.
+the value of (some) state variables by a boolean expression, e.g. Â´myvar > 5 - 2Â´.
 The expression language is implemented by *ssma.fml* and can be used for formulating  
 invariants on states as well as guards on transitions. Note that all expressions are 
-currently either of type ´Integer´ or ´Boolean´ and no other types are  supported.
-State variables are always of type ´Integer´.
+currently either of type Â´IntegerÂ´ or Â´BooleanÂ´ and no other types are  supported.
+State variables are always of type Â´IntegerÂ´.
 
 
 The SSMA toolset can **check several properties** of a state machine that goes **beyond pure syntactic
@@ -61,18 +61,19 @@ together with Xtext 2.8 installed on your machine.
 
 ## Credits
 
-- **YAKINDU** SSMA has been greatly inspired by [Yakindu](www.statecharts.org). Compared to Yakindu,
+- **YAKINDU** SSMA has been greatly inspired by [Yakindu](http://www.statecharts.org). Compared to Yakindu,
 SSMA does not support a graphical syntax (yet) and has the simpler expression language (e.g.
-all expressions are of type ´Integer´ or ´Boolean´). On the other hand, Yakindu does not allow
+all expressions are of type Â´IntegerÂ´ or Â´BooleanÂ´). On the other hand, Yakindu does not allow
 to annotate invariants on a state and  provides pure syntactic checks only.
 
 - **PRINCESS** SSMA uses internally this theorem prover [Princess](http://www.philipp.ruemmer.org/princess.shtml) 
-developed by Philipp RÃ¼mmer for semantic
+developed by *Philipp RÃ¼mmer* for semantic
 checks on the state machine. Princess supports first-order predicate logic
 with Integer arithmetic (i.e. interpreted function and relation symbols).
-
+   
 - **Book _Implementing Domain-Specific Languages with Xtext and Xtend_ by _Lorenzo Bettini_**
-This fantastic book teaches the definition of DSLs with Xtext with numerous insightful 
+This [fantastic book](https://www.packtpub.com/application-development/implementing-domain-specific-languages-xtext-and-xtend) 
+teaches the definition of DSLs with Xtext with numerous insightful 
 examples. The language *ssma.fml* is more or less taken literally from this book (in the book, this
 language is called *Expression*).
 

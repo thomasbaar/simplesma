@@ -9,7 +9,7 @@ de.htwberlin.selab.princessintegration (+ .test)  - wrapper Java project for pro
 ssma.fml (+ .sdk, .tests, .ui, .examples) - Xtext-projects for a simple expression language needed to express guards, updates, and invariants in simple state machines
 ssma.sminv (+ .sdk, .tests, .ui, .examples) - Xtext-projects for simple state machines; note that some of these projects depend on corresponding project from ssma.fml.*
 ssma - Eclipse project for technical purpose (e.g. documentation)
-
+ 
 Installation steps:
 -------------------
 - It is assumed you have installed Eclipse with the Xtext-plugin 
