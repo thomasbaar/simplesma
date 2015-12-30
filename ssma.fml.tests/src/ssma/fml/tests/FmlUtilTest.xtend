@@ -43,12 +43,5 @@ class FmlUtilTest {
 		t.copy.and(t.copy).assertReprFromTerm("(((10 < 5) || ((5 + 7) < 23)) && ((10 < 5) || ((5 + 7) < 23)))")
 	}
 
-	@Test(expected= typeof(IllegalArgumentException)) 
-	def void testAnd_onNonBooleanTerm() {
-		val model = "10 + 5".parse
-		val t = model.terms.head.t
-		t.and(t) // should throw Exception
-		fail()
-	}
 
 }

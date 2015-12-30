@@ -8,7 +8,7 @@ Eclipse projects:
 de.htwberlin.selab.princessintegration (+ .test)  - wrapper Java project for prover PRINCESS + unit tests
 ssma.fml (+ .sdk, .tests, .ui, .examples) - Xtext-projects for a simple expression language needed to express guards, updates, and invariants in simple state machines
 ssma.sminv (+ .sdk, .tests, .ui, .examples) - Xtext-projects for simple state machines; note that some of these projects depend on corresponding project from ssma.fml.*
-
+ssma - Eclipse project for technical purpose (e.g. documentation)
 
 Installation steps:
 -------------------
@@ -16,9 +16,9 @@ Installation steps:
 (can be downloaded alltogether from https://www.eclipse.org/Xtext/download.html )
 of the supported version (see README.md)
 
-- Clone the repository ssma on your local machine
+- Clone this repository (simplesma) on your local machine
 
-- Import all Eclipse projects from Git into your workspace
+- Change into Eclipse's Java perspective and import all Eclipse projects from Git into your workspace
 
 - Copy .classpath.example to .classpath for all Eclipse projects where possible --
   Note that .classpath  often contains settings, which are valid only on the local machine.
@@ -35,8 +35,12 @@ of the supported version (see README.md)
   
 - Now, all errors in the pane 'Problems' should have disappeared :-) 
 
-- Start the runtime Eclipse by a right-click on a project 'Run As > Eclipse Application'
+- Run the tests in the .test(s)-projects by right-click the project and choose 'Run As > JUnit Test'. All tests
+should go through :-)
+
+- Start the runtime Eclipse by a right-click on a project and choose 'Run As > Eclipse Application'
   to see the editors for ssma.fml and ssma.sminv in action. Example input files can be
-  found in ssma.fml.examples and ssma.sminv.examples.
+  found in projects ssma.fml.examples and ssma.sminv.examples.
  
+- Have fun when developing your semantically checked state machines ;-) 
 
