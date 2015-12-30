@@ -2,7 +2,7 @@
 
 ## Overview
 
-The *Simple State Machine Analyzer* (*SSMA* for short) is an [Xtext](http://www.eclipse.org/xtext)-based
+The *Simple State Machine Analyzer* (*SSMA* for short) is an [Xtext](http://www.eclipse.org/Xtext)-based
 toolset for analyzing simple state machines. SSMA has been implemented in
 form of multiple DSLs. From the user's point of view, the DSL *ssma.sminv*
 is the most important one since it allows to create and to interact with 
@@ -29,7 +29,7 @@ on states have not been supported yet.
 
 A **unique feature** of SSMA is the **formulation and verification of invariants on states**. 
 For example, one can constrain
-the value of (some) state variables by a boolean expression, e.g. ´myvar > 5 - 2´.
+the value of (some) state variables by a boolean expression, e.g. `myvar > 5 - 2`.
 The expression language is implemented by *ssma.fml* and can be used for formulating  
 invariants on states as well as guards on transitions. Note that all expressions are 
 currently either of type ´Integer´ or ´Boolean´ and no other types are  supported.
@@ -47,7 +47,7 @@ conference paper *Thomas Baar: Verification Support for a State-Transition-DSL
 Defined with Xtext*, published at the PSI'15 conference, held in 
 Kazan, Russian Federation, August 25-27, 2015. The conference proceedings
 have been published by Springer. 
-#Te pre-print can be found in *ssma/doc/publications*.
+The pre-print can be found in *ssma/doc/publications*.
 
 Further documentations such as screenshots and an installation guide can be
 found in project *ssma*.
