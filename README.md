@@ -46,7 +46,7 @@ For a thorough description of SSMA's features please have a look on a pre-print 
 conference paper *Thomas Baar: Verification Support for a State-Transition-DSL
 Defined with Xtext*, published at the PSI'15 conference, held in 
 Kazan, Russian Federation, August 25-27, 2015. The conference proceedings
-have been published by Springer. 
+have been published by Springer and is accessable under http://www.springer.com/us/book/9783319415789
 The pre-print can be found in *ssma/doc/publications*.
 
 Further documentations such as screenshots and an installation guide can be
