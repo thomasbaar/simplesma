@@ -22,6 +22,7 @@ generate sminvDsl "http://www.sminv.ssma/SminvDsl"
 
 
 SminvModel:
+	'project' name=ID  // serves as namespace; avoid cross-refs to Types from other files
 	vd=VarDecl
 	sd=StateDecl
 	ed=EventDecl

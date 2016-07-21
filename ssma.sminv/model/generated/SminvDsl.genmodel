@@ -8,6 +8,7 @@
   <genPackages prefix="SminvDsl" basePackage="ssma.sminv" disposableProviderFactory="true"
       fileExtensions="sminv" ecorePackage="SminvDsl.ecore#/">
     <genClasses ecoreClass="SminvDsl.ecore#//SminvModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SminvDsl.ecore#//SminvModel/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/vd"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/sd"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SminvDsl.ecore#//SminvModel/ed"/>
