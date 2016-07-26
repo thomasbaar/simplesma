@@ -1,0 +1,12 @@
+project keyws01
+vars  x 
+states start p1 p2
+events 
+transitions 
+start => p1 / x = 58;  //TODO: allow also non-deterministic assignment
+                        //TODO: as an alternative, have global facts holding everywhere (e..g v > 5)
+p1 => p2 / x += 1;
+
+invariants
+p1 : x > 5;
+p2 : x > 6; 

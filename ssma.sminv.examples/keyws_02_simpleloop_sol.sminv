@@ -1,0 +1,20 @@
+project keyws03_sol
+vars  x y a b
+states start p1 p2 p3 exit
+events 
+transitions 
+start => p1 / x = a y = b;  
+p1 => p2 / x -= 1;
+p2 => p3 / y += 1;
+p3 => p1 [x > 0];
+p3 => exit [x == 0];
+
+invariants
+// the claim to prove
+exit : y == a + b;
+
+// helper invariants
+p1 : x+y == a+b;
+p2 : x+y == a+b-1;
+p3 : x+y == a+b;
+

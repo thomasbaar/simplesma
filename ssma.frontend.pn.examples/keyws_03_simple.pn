@@ -1,0 +1,21 @@
+/*
+ * Simple Petri-Net
+ * The task is to prove, that net is 1-safety (right terminology ???),
+ * i.e. you should prove, that on each place there is at
+ * most one token.
+ * 
+ */
+  
+
+project pn_03_simple
+places p1 p2
+initialization: p1
+transitions
+t1: p1 => p2;
+t2: p2 => p1;
+invariants
+p1 || p2;    // alone, not strong enough
+p1 && ! p2 || !p1 && p2;  // this is 1-safety
+
+  
+

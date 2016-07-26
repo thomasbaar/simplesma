@@ -1,0 +1,27 @@
+project key_ws04_elevator
+places doorClosed 
+       doorOpened 
+       ready 
+       destSelected 
+       destNonSelected  
+       elevatorStopped 
+       elevatorDriving 
+initialization: doorClosed destNonSelected elevatorStopped
+transitions
+t1: doorClosed elevatorStopped => doorOpened;
+t2: doorOpened => doorClosed ready;
+t3: destNonSelected => destSelected;
+t4: ready destSelected => destNonSelected elevatorDriving;
+t5: elevatorDriving => elevatorStopped;
+invariants
+destSelected && ! destNonSelected || ! destSelected && destNonSelected; // 1-safety - part 1
+ 
+doorClosed && ! doorOpened || ! doorClosed && doorOpened; // 1-safety, part 2
+
+doorOpened && !ready && !elevatorDriving && !elevatorStopped ||
+!doorOpened && ready && !elevatorDriving && !elevatorStopped ||
+!doorOpened && !ready && elevatorDriving && !elevatorStopped ||
+!doorOpened && !ready && !elevatorDriving && elevatorStopped ;
+
+// original claim
+elevatorDriving -> doorClosed;
