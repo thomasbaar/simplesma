@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ssma.frontend.pn/src-gen" editDirectory="/ssma.frontend.pn.edit/src"
+    editorDirectory="/ssma.frontend.pn.editor/src" modelPluginID="ssma.frontend.pn"
+    forceOverwrite="true" modelName="PnDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="ssma.frontend.pn.edit"
+    editorPluginID="ssma.frontend.pn.editor" runtimeVersion="2.11" usedGenPackages="platform:/resource/ssma.fml/model/generated/FmlDsl.genmodel#//fmlDsl">
+  <genPackages prefix="PnDsl" basePackage="ssma.frontend.pn" disposableProviderFactory="true"
+      fileExtensions="pn" ecorePackage="PnDsl.ecore#/">
+    <genClasses ecoreClass="PnDsl.ecore#//PnModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PnDsl.ecore#//PnModel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//PnModel/pd"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//PnModel/ip"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//PnModel/ts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//PnModel/inv"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//PlaceDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//PlaceDecl/places"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//Place">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PnDsl.ecore#//Place/name"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//InitPlaces">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PnDsl.ecore#//InitPlaces/marked"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//TransitionDefinitions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//TransitionDefinitions/trans"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//Transition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PnDsl.ecore#//Transition/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PnDsl.ecore#//Transition/prePlaces"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PnDsl.ecore#//Transition/postPlaces"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//InvDefinitions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//InvDefinitions/inv"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//Invariant">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//Invariant/body"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//Term"/>
+    <genClasses ecoreClass="PnDsl.ecore#//NegFml">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//NegFml/t"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//Compound">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PnDsl.ecore#//Compound/t"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//BoolConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PnDsl.ecore#//BoolConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PnDsl.ecore#//PlaceFml">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PnDsl.ecore#//PlaceFml/f"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -54,6 +54,7 @@ MultDiv returns Term:
 
 Atomic returns Term:
 	{NegFml} '!' t=Atomic   // NOTE: here we need Atomic instead of Term !!!
+                            // TODO: Negation should have less binding than ==
 	| {Compound} '(' t=Term ')'  // 
 	| {BoolConstant} value=('true'|'false') 
 	| {IntConstant} value=INT

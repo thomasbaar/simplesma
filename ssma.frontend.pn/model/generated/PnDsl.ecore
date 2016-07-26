@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pnDsl" nsURI="http://www.frontend.ssma/pn/PnDsl" nsPrefix="pnDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="PnModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pd" eType="#//PlaceDecl"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ip" eType="#//InitPlaces"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ts" eType="#//TransitionDefinitions"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inv" eType="#//InvDefinitions"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlaceDecl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="places" upperBound="-1"
+        eType="#//Place" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Place">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitPlaces">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="marked" unique="false"
+        upperBound="-1" eType="#//Place"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransitionDefinitions">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trans" upperBound="-1"
+        eType="#//Transition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prePlaces" unique="false"
+        upperBound="-1" eType="#//Place"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postPlaces" unique="false"
+        upperBound="-1" eType="#//Place"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvDefinitions">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inv" upperBound="-1" eType="#//Invariant"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Invariant">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="ecore:EClass platform:/resource/ssma.fml/model/generated/FmlDsl.ecore#//Term"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Term" eSuperTypes="platform:/resource/ssma.fml/model/generated/FmlDsl.ecore#//Term"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NegFml" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" eType="#//Term" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Compound" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" eType="ecore:EClass platform:/resource/ssma.fml/model/generated/FmlDsl.ecore#//Term"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoolConstant" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlaceFml" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f" eType="#//Place"/>
+  </eClassifiers>
+</ecore:EPackage>

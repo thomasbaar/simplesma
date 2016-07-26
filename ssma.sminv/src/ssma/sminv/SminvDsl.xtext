@@ -16,13 +16,14 @@ generate sminvDsl "http://www.sminv.ssma/SminvDsl"
 // NOTE: add MF-dep from ..tests to ssma.fml.tests
 // NOTE: add MF-dep from ..tests to ssma.fml   //TODO: try to get rid of this one day ...
 // NOTE: add MF-dep from ..ui to ssma.fml.ui
+// NOTE: adapt .mwe2 file (workflow->bean->platformUri)
 //
 // NOTE: Do not forget to inject an own TermTypeProvider
-//       in ...RuntimeModule.jav
+//       in ...RuntimeModule.java
 
 
 SminvModel:
-	'project' name=ID  // serves as namespace; avoid cross-refs to Types from other files
+	('project' name=ID)?  // serves as namespace; avoid cross-refs to Types from other files
 	vd=VarDecl
 	sd=StateDecl
 	ed=EventDecl

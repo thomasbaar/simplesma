@@ -1,0 +1,62 @@
+grammar ssma.frontend.pn.PnDsl with ssma.fml.FmlDsl
+
+generate pnDsl "http://www.frontend.ssma/pn/PnDsl"
+
+// This language is a frontend-language for sminv and
+// encodes Petri-nets. 
+// The codegenerator generates ordinary sminv-input.
+
+//
+// This grammar inherits from language fml
+//
+// NOTE: add MF-dep from . to ssma.fml (make sure everything is exported there)
+// NOTE: add MF-dep from ..tests to ssma.fml.tests
+// NOTE: add MF-dep from ..tests to ssma.fml   //TODO: try to get rid of this one day ...
+// NOTE: add MF-dep from ..ui to ssma.fml.ui
+// NOTE: adapt .mwe2 file (workflow->bean->platformUri)
+
+// NOTE: provide own TermTypeProvider in ..RuntimeModule
+// NOTE: provide TermPrinter for invariants (needed for CodeGenerator)
+
+PnModel:
+	('project' name=ID)?  // serves as namespace; avoid cross-refs to Types from other files
+	pd=PlaceDecl
+	ip=InitPlaces
+	ts=TransitionDefinitions
+	inv=InvDefinitions;
+
+PlaceDecl:
+	'places' places+=Place+;
+
+Place:
+	name=ID;
+	
+InitPlaces:
+	'initialization:'	// ':' because we would also allow 'initialization' as a place-name
+	marked+=[Place]+// just the Places that are marked initially
+;	
+
+TransitionDefinitions:
+	'transitions' trans+=Transition*;
+	
+Transition:	
+	name=ID ':' prePlaces+=[Place]* '=>' postPlaces+=[Place]* ';';
+
+InvDefinitions:
+	'invariants' inv+=Invariant*;
+
+Invariant:
+ 	body=Term ';'
+;
+
+
+// overwrite Rule in Fml:
+// TODO: in xtext2.9, it should be sufficient to 
+//       have only the clause of PlaceFml here
+CompareFml returns Term:
+	  {NegFml} '!' t=CompareFml //NOTE: do not use Term here 
+	| {Compound} '(' t=Term ')'  
+	| {BoolConstant} value=('true'|'false') 
+	| {PlaceFml} f=[Place]   
+;
+
