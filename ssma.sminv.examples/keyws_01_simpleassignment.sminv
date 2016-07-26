@@ -1,5 +1,5 @@
 project keyws01
-vars  x 
+vars  x  
 states start p1 p2
 events 
 transitions 
