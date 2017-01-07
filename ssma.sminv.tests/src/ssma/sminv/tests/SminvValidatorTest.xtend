@@ -170,7 +170,7 @@ class SminvValidatorTest {
 	               states start a b c
 	               events ev1 
 	               transitions  start => a / v1=3;
-	                            a => c [v1 < 5] / v1 += 1;
+	                            a => c ev1 [v1 < 5] / v1 += 1;
 	               invariants a: v1 > 2;
 	                          c: v1 < 6;
 	    '''.parse.assertNoErrors

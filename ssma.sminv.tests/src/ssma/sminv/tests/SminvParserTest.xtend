@@ -36,7 +36,7 @@ vars  collected bill
 
 states start idle waitingForMoney paid
 
-events cardInserted coinInserted
+events cardInserted coinInserted paidFinished
 
 transitions 
 
@@ -48,7 +48,7 @@ waitingForMoney => waitingForMoney  coinInserted [collected < bill - 1 ] / colle
 
 waitingForMoney => paid coinInserted [collected == bill - 1] / collected += 1;
 
-paid => idle / collected = 0;'''
+paid => idle paidFinished / collected = 0;'''
 
 
 

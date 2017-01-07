@@ -37,6 +37,7 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 	public static val STARTSTATE_HAS_NO_INVARIANT = "startstate.has.no.invariant"
 	public static val OUTTRANSITION_NO_EVENT = "outtransition.no.event"
 	public static val OUTTRANSITION_NO_GUARD = "outtransition.no.guard"
+	public static val TRANSITION_HAS_EVENT = "transition.has.event"
 	public static val TRANSITION_UPDATES_HAS_UNIQUE_LHSS = "transition.updates.has.unique.lhss"
 	public static val TRANSITION_MUST_PRESERVE_INVARIANTS = "transition.must.preserve.invariants"
 	public static val TRANSITION_MUST_BE_ALIVE = "transition.must.be.alive"
@@ -71,6 +72,16 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 					STARTSTATE_HAS_ONE_OUTTRANSITION)
 		}
 	}
+	
+	@Check
+	def checkAllTransitionsExceptFromStartStateHaveEvent(Transition t) {
+		if (t.ev==null && !t.pre.isStartState) {
+			error("this transition must have an event attached",
+					SminvDslPackage.Literals.TRANSITION__EV, TRANSITION_HAS_EVENT)
+		}
+	}
+
+	
 
 	@Check
 	def checkOutgoingTransitionForStartStateHasNoEventNoGuard(Transition t) {
@@ -81,7 +92,6 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 			if (t.g != null)
 				error("outgoing transition from start state must have neither event nor guard",
 					SminvDslPackage.Literals.TRANSITION__G, OUTTRANSITION_NO_GUARD)
-
 		}
 	}
 
