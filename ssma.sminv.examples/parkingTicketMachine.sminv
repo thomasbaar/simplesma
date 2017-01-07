@@ -4,10 +4,10 @@ events cardInserted coinInserted
 transitions 
 start => idle / collected = 0 bill = 3;
 idle => waitingForMoney cardInserted;
-
+ 
 waitingForMoney => waitingForMoney  coinInserted 
              [collected < bill - 1 ] / collected += 1;
- 
+  
 waitingForMoney => paid coinInserted 
             [collected == bill - 1] / collected += 1;
  
