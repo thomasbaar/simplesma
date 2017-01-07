@@ -1,0 +1,62 @@
+grammar ssma.fml.FmlDsl with org.eclipse.xtext.common.Terminals
+
+generate fmlDsl "http://www.fml.ssma/FmlDsl"
+
+// Language for formulas very similar to the Expressions-language
+// given in the Bettini-Book
+
+// Note that class TermTypeProvider together with the validator
+// enforces only such terms that are correct wrt. typing
+
+
+FmlModel :
+	terms+=TermWithSeparator+
+;
+
+TermWithSeparator :
+	t=Term ';'
+;
+
+
+Term: EquivFml;
+
+EquivFml returns Term:
+	ImpliesFml ({EquivFml.left=current} '<->' right=ImpliesFml)?
+;
+
+ImpliesFml returns Term:
+	OrFml ({ImpliesFml.left=current} '->' right=OrFml)?
+;
+
+OrFml returns Term:
+	AndFml ({OrFml.left=current} '||' right=AndFml)*
+;
+
+AndFml returns Term:
+	CompareFml ({AndFml.left=current} '&&' right=CompareFml)*
+;
+
+// note that '==' compares only int-values
+// for comparing of bool-values use '<->'
+CompareFml returns Term:
+	PlusMinus ({CompareFml.left=current} op=('=='| '<' | '<=' | '>' | '>=') right=PlusMinus)?
+;
+
+PlusMinus returns Term:
+	MultDiv ({PlusMinus.left=current} op=('+' | '-') right=MultDiv)*
+;
+
+MultDiv returns Term:
+	Atomic ({MultDiv.left=current} op=('*'
+		//|'/'  // for the moment, we do not support division, since we had to argue which division we mean (note that terms are of type int)
+	) right=Atomic)*
+;
+
+Atomic returns Term:
+	{NegFml} '!' t=Atomic   // NOTE: here we need Atomic instead of Term !!!
+                            // TODO: Negation should have less binding than ==
+	| {Compound} '(' t=Term ')'  // 
+	| {BoolConstant} value=('true'|'false') 
+	| {IntConstant} value=INT
+;
+

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ssma.fml.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: ssma.fml.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: ssma.fml,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: ssma.fml.ide.contentassist.antlr,
+ ssma.fml.ide.contentassist.antlr.internal
+
