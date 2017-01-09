@@ -101,6 +101,10 @@ class ExecutionState {
 		binding
 	}
 
+	def State getActiveState() {
+		activeState
+	}
+
 	private def evalActionsOnBinding(Transition t, Binding oldBinding) {
 		if (t.act == null || t.act.empty) {
 			// nothing to do

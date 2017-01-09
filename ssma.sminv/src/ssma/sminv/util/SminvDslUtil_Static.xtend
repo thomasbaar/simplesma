@@ -57,6 +57,14 @@ class SminvDslUtil_Static {
 		model.sd.states
 	}
 
+	def static getEvents(SminvModel model) {
+		model.ed.events
+	}
+	
+	def static getVars(SminvModel model) {
+		model.vd.vars
+	}
+	
 	def static getStartState(SminvModel model) {
 		model.states.head
 	}

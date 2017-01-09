@@ -5,7 +5,6 @@ import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.junit.Test
 import org.junit.runner.RunWith
-import ssma.sminv.tests.SminvDslInjectorProvider
 
 
 @RunWith(typeof(XtextRunner))
@@ -15,7 +14,6 @@ class SminvTermEvalProviderTest {
 	@Inject extension SminvTestHelper
 
 
-	//TODO: we can only test for BoolType so far; just find a way also to test on int-type
 
 
 	@Test def void boolConstant1() { "true".assertValue("", true) }

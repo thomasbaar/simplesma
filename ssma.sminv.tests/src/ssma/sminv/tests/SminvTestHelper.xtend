@@ -14,7 +14,6 @@ import ssma.sminv.typing.TermTypeProviderWithVar
 import ssma.sminv.util.SminvDslUtil
 
 import static extension org.junit.Assert.*
-import ssma.sminv.eval.TermEvalProvider
 import ssma.sminv.simulation.domain.Trace
 
 
@@ -25,7 +24,6 @@ class SminvTestHelper extends AbstractFmlTestHelper {
 	@Inject extension ParseHelper<SminvModel>
 	@Inject extension ValidationTestHelper
 	@Inject extension TermTypeProviderWithVar
-//	@Inject extension TermEvalProvider
 	@Inject extension SminvDslPrinter
 	@Inject extension SminvDslUtil
 
