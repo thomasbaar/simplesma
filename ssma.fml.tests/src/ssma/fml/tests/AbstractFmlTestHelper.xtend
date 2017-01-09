@@ -53,6 +53,12 @@ abstract class  AbstractFmlTestHelper {
 	def void assertType(CharSequence input, TermType expectedType) 
 	
 	/**
+	 * To be overridden in subclasses
+	 */
+	def void assertValue(CharSequence input, CharSequence bindingActions, boolean expected) 
+
+
+	/**
 	 * Returns the string-representation depending of the printer
 	 * in the subclasses
 	 */

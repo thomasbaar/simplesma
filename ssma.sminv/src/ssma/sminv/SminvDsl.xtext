@@ -28,6 +28,9 @@ SminvModel:
 
 // all variables are of type int
 // all variables are globally visible
+// variables are internally initialized with 0; other initializations can be done via
+// action from start-state to its successor-state
+
 VarDecl:
 	{VarDecl}
 	'vars'  vars+=Var*;
@@ -70,7 +73,7 @@ Update:
 //       not take the inherited ones!!! Even for Term is new class is created
 //       but at least this is a subclass of the inherited Term.
 // TODO: find out how to avoid the new creation, since it
-//       forces code-duplication in the TermTypeProvider
+//       forces code-duplication in the TermTypeProvider and TermEvalProvider
 Atomic returns Term:
 	{NegFml} '!' t=Atomic   // NOTE: here we need Atomic instead of Term !!!
 	| {Compound} '(' t=Term ')'  // 

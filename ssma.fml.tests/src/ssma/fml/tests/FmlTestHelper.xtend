@@ -27,6 +27,11 @@ class FmlTestHelper extends AbstractFmlTestHelper {
 		expectedType.assertSame(model.terms.last.t.typeFor)
 	}
 	
+	
+	override assertValue(CharSequence input, CharSequence bindingActions, boolean expected){
+		throw new UnsupportedOperationException("not implemented here")
+	} 
+	
 	override getRightStringRepr(Term t) {
 		t.stringRepr
 	}

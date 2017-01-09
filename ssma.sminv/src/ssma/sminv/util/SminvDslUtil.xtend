@@ -41,12 +41,16 @@ class SminvDslUtil extends FmlDslUtil {
 		}
 	}
 
-	def getTransitions(SminvModel model) {
+	def Iterable<Transition> getTransitions(SminvModel model) {
 		model.td.trans
 	}
 
 	def getStates(SminvModel model) {
 		model.sd.states
+	}
+
+	def getStartState(SminvModel model) {
+		model.states.head
 	}
 
 	def Iterable<Inv> getInvariants(State s) {
