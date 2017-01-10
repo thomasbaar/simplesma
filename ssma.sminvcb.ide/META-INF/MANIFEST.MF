@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ssma.sminvcb.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: ssma.sminvcb.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: ssma.sminvcb,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ ssma.sminv;bundle-version="1.0.0",
+ ssma.fml;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: ssma.sminvcb.ide.contentassist.antlr.internal,
+ ssma.sminvcb.ide.contentassist.antlr
+

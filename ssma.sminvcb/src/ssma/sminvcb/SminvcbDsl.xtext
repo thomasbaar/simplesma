@@ -1,0 +1,45 @@
+grammar ssma.sminvcb.SminvcbDsl with ssma.sminv.SminvDsl
+
+//TODO: I had trouble to get ID visible, but 
+//      magically, it worked out in the end
+//grammar ssma.sminvcb.SminvcbDsl with ssma.fml.FmlDsl
+
+generate sminvcbDsl "http://www.sminvcb.ssma/SminvcbDsl"
+
+import "http://www.sminv.ssma/SminvDsl"
+//import "http://www.fml.ssma/FmlDsl"
+
+//import "http://www.eclipse.org/xtext/common/Terminals"
+//import "http://www.eclipse.org/xtext/common/JavaVMTypes"
+
+//import "http://www.eclipse.org/xtext/common/types/TypesPackage"
+//import "org.eclipse.xtext.common.types.TypesPackage"
+
+ 
+// Defines the codebridge (db) from an sminv-model 
+// to running code
+//
+// The codebridge defines how the values of code-variables
+// are mapped to states and var-values in the Sminv-Model
+ 
+ 
+// NOTE: 
+// - add an Eclipse-dependency to ssma.sminv 
+// - add an Eclipse-dependency to ssma.fml
+// - adapt .mwe2 file (workflow->component->language->referencedResource) 
+// - add MF-dep from . to ssma.fml
+// - add MF-dep from ..ide to ssma.fml
+// - add MF-dep from ..ide to ssma.sminv
+// - add MF-dep from ..ui to ssma.fml.ui 
+// - add MF-dep from ..ui to ssma.sminv.ui 
+// - add MF-dep from ..tests to ssma.sminv.tests
+// - add MF-dep from ..tests to ssma.sminv
+
+SminvcbModel:
+	"sminv" 
+	model=[SminvModel]
+	name=ID
+//	cvd=CodeVarDecl
+//	spd=StatePredDecl
+//	vfd:VarFuncDecl
+;

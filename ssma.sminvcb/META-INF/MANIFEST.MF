@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ssma.sminvcb
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: ssma.sminvcb; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ ssma.sminv;bundle-version="1.0.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common,
+ ssma.fml;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: ssma.sminvcb.sminvcbDsl,
+ ssma.sminvcb.sminvcbDsl.impl,
+ ssma.sminvcb.validation,
+ ssma.sminvcb.parser.antlr.internal,
+ ssma.sminvcb,
+ ssma.sminvcb.scoping,
+ ssma.sminvcb.services,
+ ssma.sminvcb.serializer,
+ ssma.sminvcb.generator,
+ ssma.sminvcb.sminvcbDsl.util,
+ ssma.sminvcb.parser.antlr
+Import-Package: org.apache.log4j
