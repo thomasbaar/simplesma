@@ -14,6 +14,12 @@ class FmlDslValidatorHelper {
 	@Inject extension TermTypeProvider
 	@Inject  FmlDslValidator v
 
+	// later we change the validator, so we enclose
+	// v by a getter
+	def protected FmlDslValidator  getV(){
+		v
+	}
+
 	def checkExpectedBoolean(Term exp, EReference reference) {
 		checkExpectedType(exp, TermTypeProvider::boolType, reference)
 	}
@@ -25,13 +31,13 @@ class FmlDslValidatorHelper {
 	def protected checkExpectedType(Term exp, TermType expectedType, EReference reference) {
 		val actualType = getTypeAndCheckNotNull(exp, reference)
 		if (actualType != expectedType)
-			v.perror("expected " + expectedType + " type, but was " + actualType, reference, FmlDslValidator::WRONG_TYPE)
+			getV.perror("expected " + expectedType + " type, but was " + actualType, reference, FmlDslValidator::WRONG_TYPE)
 	}
 
 	def protected TermType getTypeAndCheckNotNull(Term exp, EReference reference) {
 		var type = exp?.typeFor
 		if (type == null)
-			v.perror("null type", reference, FmlDslValidator::WRONG_TYPE)
+			getV.perror("null type", reference, FmlDslValidator::WRONG_TYPE)
 		return type;
 	}
 

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import ssma.sminv.sminvDsl.SminvModel
 
 import static org.junit.Assert.*
+import ssma.sminv.sminvDsl.SminvDslPackage
 
 /**
  * A "multi-language test that need first to 
@@ -52,7 +53,14 @@ class SminvcbParserTest {
 			               transitions  start => a;
 			                            a => b ev1 [3 < 5];
 		'''
-	val inp1_Sec = '''sminv myprojsminv bla
+	val inp1_Sec = '''refers_to  myprojsminv
+						code_vars
+						state_preds
+	'''
+	
+	val inp1_Sec1 = '''refers_to  myprojsminv
+						code_vars s s 
+						state_preds
 	'''
 	
 	val inp2_First = '''project sminv_stack
@@ -66,18 +74,34 @@ class SminvcbParserTest {
 			               		nonEmpty => nonEmpty pop [num > 1] /num -= 1;
 			               		nonEmpty => isEmpty pop [num==1] /num -= 1;
 		'''
-	val inp2_Sec = '''sminv sminv_stack bla
+	val inp2_Sec = '''project sminv_state_codebridge 
+						refers_to sminv_stack
+						import sminv_stack.*;
+						code_vars s
+						state_preds
+							   isEmpty: 1==0;
+							   nonEmpty: 2>0;
+							// sminv_stack.isEmpty: 5>4;
+							//   nonEmpty: 6;
 	'''
 	
 	
 
 	@Test def void checkInp1() {
-		parseComposedModel(inp1_First, inp1_Sec)
+		val model = parseComposedModel(inp1_First, inp1_Sec)
+		validationTester.assertNoIssues(model)
+	}
+
+	@Test def void checkInp11() {
+		val model = parseComposedModel(inp1_First, inp1_Sec1)
+		// Vars (also code-vars) need unique name
+		validationTester.assertError(model, SminvDslPackage::eINSTANCE.^var, null)
 	}
 
 
 	@Test def void checkInp2() {
-		parseComposedModel(inp2_First, inp2_Sec)
+		val model = parseComposedModel(inp2_First, inp2_Sec)
+		validationTester.assertNoIssues(model)
 	}
 
 
@@ -101,7 +125,6 @@ class SminvcbParserTest {
 		val model2 = parseHelperSec.parse(inp_Sec, rs)
 
 		assertNotNull(model2)
-		validationTester.assertNoIssues(model2)
 		model2
 		
 	}

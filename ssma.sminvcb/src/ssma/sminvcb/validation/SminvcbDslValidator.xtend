@@ -3,6 +3,10 @@
  */
 package ssma.sminvcb.validation
 
+import com.google.inject.Inject
+import org.eclipse.xtext.validation.Check
+import ssma.sminvcb.sminvcbDsl.SminvcbDslPackage
+import ssma.sminvcb.sminvcbDsl.StatePred
 
 /**
  * This class contains custom validation rules. 
@@ -10,16 +14,11 @@ package ssma.sminvcb.validation
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class SminvcbDslValidator extends AbstractSminvcbDslValidator {
+	@Inject extension SminvcbDslValidatorHelper
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					SminvcbDslPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	@Check(NORMAL)
+	def checkPredAreBoolean(StatePred p) {
+		checkExpectedBoolean(p.pred, SminvcbDslPackage.Literals.STATE_PRED__PRED)
+	}
 	
 }

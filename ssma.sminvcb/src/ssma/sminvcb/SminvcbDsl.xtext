@@ -36,10 +36,44 @@ import "http://www.sminv.ssma/SminvDsl"
 // - add MF-dep from ..tests to ssma.sminv
 
 SminvcbModel:
-	"sminv" 
-	model=[SminvModel]
-	name=ID
-//	cvd=CodeVarDecl
-//	spd=StatePredDecl
+	('project' name=ID)?
+	'refers_to' sminvModel=[SminvModel]
+	imports+=Import*  //
+	cvd=CodeVarDecl
+	spd=StatePredDecl
 //	vfd:VarFuncDecl
 ;
+
+
+Import:
+	'import' importedNamespace=QualifiedNameWithWildcard ';';
+
+QualifiedName: ID ('.' ID)* ;
+
+QualifiedNameWithWildcard: QualifiedName '.*'? ;
+
+CodeVarDecl:
+	{CodeVarDecl}
+	'code_vars'  
+	// next three line do not work sind in Terms the 
+	// parser could not distinguish [CodeVar] from [Var]
+	// since both references use plain ID
+		//cvars+=CodeVar*;
+//CodeVar:
+//	name=ID;
+		
+		cvars+=Var*
+;		
+
+// defining predicates in terms of code_vars
+StatePredDecl:
+	{StatePredDecl}
+	'state_preds'  
+		spreds+=StatePred*;
+
+StatePred:
+	state=[State|QualifiedName]':' pred=Term ';'
+;
+
+
+
