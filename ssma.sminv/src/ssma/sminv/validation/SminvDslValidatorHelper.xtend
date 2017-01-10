@@ -10,7 +10,7 @@ import ssma.sminv.typing.TermTypeProviderWithVar
 
 class SminvDslValidatorHelper extends FmlDslValidatorHelper {
 
-	@Inject extension TermTypeProviderWithVar
+//	@Inject extension TermTypeProviderWithVar
 	@Inject SminvDslValidator v
 
 

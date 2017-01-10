@@ -34,14 +34,15 @@ import "http://www.sminv.ssma/SminvDsl"
 // - add MF-dep from ..ui to ssma.sminv.ui 
 // - add MF-dep from ..tests to ssma.sminv.tests
 // - add MF-dep from ..tests to ssma.sminv
+// - and entry for TermTypeProvider in ...DslRuntimeModule
 
 SminvcbModel:
 	('project' name=ID)?
 	'refers_to' sminvModel=[SminvModel]
 	imports+=Import*  //
 	cvd=CodeVarDecl
-	spd=StatePredDecl
-//	vfd:VarFuncDecl
+	spd=StatePredDecl  // how to recognize a state in the code-statespace
+	gpd=GlobalPredDecl
 ;
 
 
@@ -65,7 +66,9 @@ CodeVarDecl:
 		cvars+=Var*
 ;		
 
-// defining predicates in terms of code_vars
+// state-characteristic predicates in terms of code_vars
+// TODO: should we allow multiple preds for state?
+// TODO: add check that only codeVars are used
 StatePredDecl:
 	{StatePredDecl}
 	'state_preds'  
@@ -73,6 +76,17 @@ StatePredDecl:
 
 StatePred:
 	state=[State|QualifiedName]':' pred=Term ';'
+;
+
+// kind of invariants that have to be valid in all states
+// (usually the definition var = f(codeVar)
+GlobalPredDecl:
+	{GlobalPredDecl}
+	'global_preds'  
+		gpreds+=GlobalPred*;
+
+GlobalPred:
+	name=ID ':' pred=Term ';'
 ;
 
 

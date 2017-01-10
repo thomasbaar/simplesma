@@ -56,11 +56,13 @@ class SminvcbParserTest {
 	val inp1_Sec = '''refers_to  myprojsminv
 						code_vars
 						state_preds
+						global_preds
 	'''
 	
 	val inp1_Sec1 = '''refers_to  myprojsminv
 						code_vars s s 
 						state_preds
+						global_preds
 	'''
 	
 	val inp2_First = '''project sminv_stack
@@ -79,10 +81,10 @@ class SminvcbParserTest {
 						import sminv_stack.*;
 						code_vars s
 						state_preds
-							   isEmpty: 1==0;
-							   nonEmpty: 2>0;
-							// sminv_stack.isEmpty: 5>4;
-							//   nonEmpty: 6;
+							isEmpty: s==0;
+							nonEmpty: s>0;
+						global_preds
+							def_num : num == s;
 	'''
 	
 	

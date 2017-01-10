@@ -3,9 +3,19 @@
  */
 package ssma.sminvcb
 
+import ssma.fml.typing.TermTypeProvider
+import ssma.sminv.typing.TermTypeProviderWithVar
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class SminvcbDslRuntimeModule extends AbstractSminvcbDslRuntimeModule {
+
+	// Whenever an TermTypeProvider-object injected is (e.g. in 
+	//  used classes from ssma.fml, then take TermTypeProviderWithVar
+	// really cool, no need to rewrite getV() as I did in ValidatorHelper :-)
+    def Class<? extends TermTypeProvider> bindTermTypeProvider() {
+        TermTypeProviderWithVar
+    }
+
 }
