@@ -1,6 +1,7 @@
+project parkingTicket
 vars  collected bill
 states start idle waitingForMoney paid
-events cardInserted coinInserted
+events cardInserted coinInserted next
 transitions 
 start => idle / collected = 0 bill = 3;
 idle => waitingForMoney cardInserted;
@@ -11,9 +12,9 @@ waitingForMoney => waitingForMoney  coinInserted
 waitingForMoney => paid coinInserted 
             [collected == bill - 1] / collected += 1;
  
-paid => idle / collected = 0; 
-//paid => idle; // does not preserve invariant
-//idle => waitingForMoney [collected > 0]; // dead transition
+paid => idle next / collected = 0; 
+//paid => idle next; // does not preserve invariant
+//idle => waitingForMoney next [collected > 0]; // dead transition
  
 invariants  
 idle : collected == 0;
