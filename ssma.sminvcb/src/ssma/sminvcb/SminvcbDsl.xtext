@@ -38,7 +38,7 @@ import "http://www.sminv.ssma/SminvDsl"
 // - and entry for TermTypeProvider in ...DslRuntimeModule
 
 SminvcbModel:
-	('project' name=ID)?
+	'project' name=ID
 	'refers_to' sminvModel=[SminvModel]
 	imports+=Import*  //
 	cvd=CodeVarDecl

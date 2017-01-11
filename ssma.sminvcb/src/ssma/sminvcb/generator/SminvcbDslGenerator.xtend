@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import ssma.sminvcb.sminvcbDsl.SminvcbModel
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +17,42 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class SminvcbDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+		val model = resource.allContents
+				.filter(typeof(SminvcbModel)).head
+				
+				
+		fsa.generateFile(model.name.interfaceName+'.java', model.compileInterface)
+		fsa.generateFile(model.name.usageClassName+'.java', model.compileUsage)
 	}
+	
+	def getInterfaceName(String modelName){
+		"I"+modelName.toFirstUpper+"Adapter"
+	}
+	
+	def getUsageClassName(String modelName){
+		modelName.toFirstUpper+"Usage"
+	}
+	
+	def String compileInterface(SminvcbModel model){
+		'''
+		// Interface describes expectation of state-machine 
+		// on the implementation code
+		//
+		
+		public interface «model.name.interfaceName» {
+			«FOR cv:model.cvd.cvars»
+				public int «cv.name»();
+			«ENDFOR»
+		}
+		'''
+	}
+	
+		def String compileUsage(SminvcbModel model){
+			'''
+			public class «model.name.usageClassName» {
+				
+			}
+			'''
+		}
+	
 }

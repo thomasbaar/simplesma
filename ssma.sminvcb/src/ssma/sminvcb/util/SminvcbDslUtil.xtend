@@ -14,4 +14,14 @@ class SminvcbDslUtil {
 	}
 
 
+	//TODO move this to global util lib
+	def static String firstToUpper(String s){
+		if (s==null || s.isEmpty){
+			return s  // do nothing
+		}
+		
+		s.toFirstUpper
+	}
+	
+
 }
