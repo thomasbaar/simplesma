@@ -21,6 +21,9 @@ import ssma.sminv.sminvDsl.SminvModel
 
 import static org.junit.Assert.*
 import ssma.sminv.sminvDsl.SminvDslPackage
+import ssma.fml.validation.FmlDslValidator
+import ssma.sminvcb.sminvcbDsl.SminvcbDslPackage
+import ssma.sminvcb.validation.SminvcbDslValidator
 
 /**
  * A "multi-language test that need first to 
@@ -47,7 +50,7 @@ class SminvcbParserTest {
 	@Inject ValidationTestHelper validationTester
 
 	val inp1_First = '''project myprojsminv
-						vars
+						vars v
 			               states start a b
 			               events ev1 
 			               transitions  start => a;
@@ -59,11 +62,49 @@ class SminvcbParserTest {
 						global_preds
 	'''
 	
+	
+	//
+	// Incorrect variants of inp1_Sec
+	//
 	val inp1_Sec1 = '''refers_to  myprojsminv
-						code_vars s s 
+						code_vars c_s c_s //double name
 						state_preds
 						global_preds
 	'''
+	
+	val inp1_Sec2 = '''refers_to  myprojsminv
+						import myprojsminv.*;
+						code_vars  c_s v // overlap with var
+						                 // becomes an error only by the import ?!
+						state_preds
+						global_preds
+	'''
+
+	val inp1_Sec3 = '''refers_to  myprojsminv
+						import myprojsminv.*;
+						code_vars  
+						state_preds
+							a: 5; // no bool
+						global_preds
+	'''
+	
+	val inp1_Sec4 = '''refers_to  myprojsminv
+						import myprojsminv.*;
+						code_vars  
+						state_preds
+						global_preds
+							bla: 5; // no bool
+	'''
+	
+	val inp1_Sec5 = '''refers_to  myprojsminv
+						import myprojsminv.*;
+						code_vars  
+						state_preds
+							a: 5 < v; // statevar used
+						global_preds
+	'''
+	
+	
 	
 	val inp2_First = '''project sminv_stack
 							vars num
@@ -79,12 +120,12 @@ class SminvcbParserTest {
 	val inp2_Sec = '''project sminv_state_codebridge 
 						refers_to sminv_stack
 						import sminv_stack.*;
-						code_vars s
+						code_vars c_s
 						state_preds
-							isEmpty: s==0;
-							nonEmpty: s>0;
+							isEmpty: c_s==0;
+							nonEmpty: c_s>0;
 						global_preds
-							def_num : num == s;
+							def_num : num == c_s;
 	'''
 	
 	
@@ -94,25 +135,52 @@ class SminvcbParserTest {
 		validationTester.assertNoIssues(model)
 	}
 
-	@Test def void checkInp11() {
-		val model = parseComposedModel(inp1_First, inp1_Sec1)
-		// Vars (also code-vars) need unique name
-		validationTester.assertError(model, SminvDslPackage::eINSTANCE.^var, null)
-	}
-
 
 	@Test def void checkInp2() {
 		val model = parseComposedModel(inp2_First, inp2_Sec)
 		validationTester.assertNoIssues(model)
 	}
+	
+	//
+	// Incorrect cases
+	//
+
+	@Test def void checkInp11() {
+		val model = parseComposedModel(inp1_First, inp1_Sec1)
+		validationTester.assertError(model, SminvDslPackage::eINSTANCE.^var, null)
+	}
+
+// TODO: fix this
+//	@Test def void checkInp12() {
+//		val model = parseComposedModel(inp1_First, inp1_Sec2)
+//		validationTester.assertError(model, SminvDslPackage::eINSTANCE.^var, null)
+//	}
+
+	@Test def void checkInp13() {
+		val model = parseComposedModel(inp1_First, inp1_Sec3)
+		validationTester.assertError(model, SminvcbDslPackage::eINSTANCE.statePred, FmlDslValidator.WRONG_TYPE)
+	}
+
+	@Test def void checkInp14() {
+		val model = parseComposedModel(inp1_First, inp1_Sec4)
+		validationTester.assertError(model, SminvcbDslPackage::eINSTANCE.globalPred, FmlDslValidator.WRONG_TYPE)
+	}
+
+	@Test def void checkInp15() {
+		val model = parseComposedModel(inp1_First, inp1_Sec5)
+		validationTester.assertError(model, SminvcbDslPackage::eINSTANCE.statePred, SminvcbDslValidator.STATEPRED_ONLY_WITH_CODEVARS)
+	}
 
 
 
+//
+// Helper methods
+//
 
 	def private SminvcbModel parseComposedModel(String inp_First, String inp_Sec){
 		val rs = resourceSetProvider.get
 
-		// // parsing language1-model with parseHelper oes not work ;-(
+		// // parsing language1-model with parseHelper does not work ;-(
 //		val model1 = parseHelperFirst.parse(inputFirst,rs)
 //		
 //		assertNotNull(model1)

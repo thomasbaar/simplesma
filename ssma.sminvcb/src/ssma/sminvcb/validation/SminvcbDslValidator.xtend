@@ -5,8 +5,13 @@ package ssma.sminvcb.validation
 
 import com.google.inject.Inject
 import org.eclipse.xtext.validation.Check
+import ssma.sminv.sminvDsl.VarRef
+import ssma.sminvcb.sminvcbDsl.GlobalPred
 import ssma.sminvcb.sminvcbDsl.SminvcbDslPackage
 import ssma.sminvcb.sminvcbDsl.StatePred
+
+import static extension org.eclipse.xtext.EcoreUtil2.*
+import static extension ssma.sminvcb.util.SminvcbDslUtil.*
 
 /**
  * This class contains custom validation rules. 
@@ -16,9 +21,32 @@ import ssma.sminvcb.sminvcbDsl.StatePred
 class SminvcbDslValidator extends AbstractSminvcbDslValidator {
 	@Inject extension SminvcbDslValidatorHelper
 	
+	public static val STATEPRED_ONLY_WITH_CODEVARS = "statepred.only.with.codevars"
+	
 	@Check(NORMAL)
-	def checkPredAreBoolean(StatePred p) {
+	def checkStatePredAreBoolean(StatePred p) {
 		checkExpectedBoolean(p.pred, SminvcbDslPackage.Literals.STATE_PRED__PRED)
 	}
+	
+	@Check(NORMAL)
+	def checkGlobalPredAreBoolean(GlobalPred p) {
+		checkExpectedBoolean(p.pred, SminvcbDslPackage.Literals.GLOBAL_PRED__PRED)
+	}
+
+	@Check(NORMAL)
+	def checkStatePredOnlyWithCodevars(StatePred p) {
+		val stateVars = p.getAllContentsOfType(VarRef).filter[! v.isCodeVar]
+		if(	! stateVars.isEmpty){
+//			for(sv:stateVars){
+				//TODO: mark the single statevar
+				error(
+					"Only codevars are allowed in state-preds",
+					SminvcbDslPackage.Literals.STATE_PRED__PRED,
+					STATEPRED_ONLY_WITH_CODEVARS
+				)
+//			}
+		}
+	}
+	
 	
 }

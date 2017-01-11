@@ -34,6 +34,7 @@ import "http://www.sminv.ssma/SminvDsl"
 // - add MF-dep from ..ui to ssma.sminv.ui 
 // - add MF-dep from ..tests to ssma.sminv.tests
 // - add MF-dep from ..tests to ssma.sminv
+// - add MF-dep from ..tests to ssma.fml
 // - and entry for TermTypeProvider in ...DslRuntimeModule
 
 SminvcbModel:
@@ -67,7 +68,7 @@ CodeVarDecl:
 ;		
 
 // state-characteristic predicates in terms of code_vars
-// TODO: should we allow multiple preds for state?
+// Should we allow multiple preds for state? 
 // TODO: add check that only codeVars are used
 StatePredDecl:
 	{StatePredDecl}
