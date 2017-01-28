@@ -2,17 +2,14 @@ package ssma.sminv.util
 
 import com.google.inject.Inject
 import java.util.ArrayList
-import ssma.fml.util.FmlDslUtil
 import ssma.sminv.printing.SminvDslPrinter
 import ssma.sminv.sminvDsl.Inv
 import ssma.sminv.sminvDsl.SminvModel
 import ssma.sminv.sminvDsl.State
 import ssma.sminv.sminvDsl.StateDecl
 import ssma.sminv.sminvDsl.Transition
-import ssma.sminv.typing.TermTypeProviderWithVar
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-
 
 /**
  * TODO: this class is basically a copy of the original Util-Class

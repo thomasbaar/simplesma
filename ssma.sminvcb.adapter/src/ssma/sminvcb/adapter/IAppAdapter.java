@@ -1,8 +1,14 @@
 package ssma.sminvcb.adapter;
 
+import java.util.List;
+
 /**
  * Adapter for accessing from statemachine to application 
  * (i.e. the implemented system modeled by statemachine)
+ * 
+ * Note that all implementing classes are required to have a
+ * parameterless constructor.
+ * 
  * @author baar
  *
  */
@@ -31,5 +37,11 @@ public interface IAppAdapter {
 	 * @param msg
 	 */
 	void debug(String msg);
+	
+	/** 
+	 * Overrides the list of events to be execute for the driver
+	 * @param evl
+	 */
+	void setEventList(List<String> evl);
 
 }

@@ -2,5 +2,9 @@ package ssma.sminvcb.adapter;
 
 public interface ISmAdapter {
 
-	void evOccurred(String ev);
+	/** 
+	 * To be called from the app still in the pre-state 
+	 * @param ev
+	 */
+	void evOccurred_pre(String ev);
 }

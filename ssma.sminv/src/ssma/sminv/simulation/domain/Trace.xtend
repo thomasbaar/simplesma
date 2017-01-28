@@ -13,14 +13,14 @@ class Trace {
 	var Instant creationTime
 	var states = new ArrayList<ExecutionState>()
 	var ExecutionState last
-	var TraceListener listener
+	var Trace.ITraceListener listener
 
 
 	new(SminvModel aStatemachine){
 		this(aStatemachine, null)
 	}	
 
-	new(SminvModel aStatemachine, TraceListener aListener){
+	new(SminvModel aStatemachine, Trace.ITraceListener aListener){
 		creationTime = Instant.now
 		statemachine = aStatemachine
 		listener=aListener
@@ -39,9 +39,9 @@ class Trace {
 		occurred(null)		
 	}
 	
-	def void setListener(TraceListener arg){
-		listener = arg
-	}
+//	def void setListener(Trace.ITraceListener arg){
+//		listener = arg
+//	}
 	
 	private def void updateWarn(String msg){
 		listener?.warn(msg)
@@ -94,9 +94,15 @@ class Trace {
 	}
 	
 	
-	static interface TraceListener {
+	def getLast(){
+		last
+	}
+	
+	
+	static interface ITraceListener {
 		def void info(String s)
 		def void warn(String s)
+		def void error(String s)
 	}
 	
 }

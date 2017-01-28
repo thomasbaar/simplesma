@@ -17,61 +17,14 @@ import ssma.sminvcb.sminvcbDsl.SminvcbModel
 class SminvcbDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		val model = resource.allContents
-				.filter(typeof(SminvcbModel)).head
-				
-				
-		fsa.generateFile("sminvcb/"+model.name.interfaceName+'.java', model.compileInterface)
-		fsa.generateFile("sminvcb/"+model.name.usageClassName+'.java', model.compileUsage)
+//		val model = resource.allContents
+//				.filter(typeof(SminvcbModel)).head
+//				
+//				
+//		fsa.generateFile("sminvcb/"+model.name.interfaceName+'.java', model.compileInterface)
+//		fsa.generateFile("sminvcb/"+model.name.usageClassName+'.java', model.compileUsage)
 
-//		myInvoke("sminvcb."+model.name.usageClassName)
-//		myInvoke("mylib.MyLib")
 	}
 	
-	def myInvoke(String cn) {
-		
-		val parentCL = this.class.getClassLoader()
-		
-		val clazz = parentCL.loadClass(cn)
-		
-		val method = clazz.getMethod("doSmth");
-		method.invoke(null);
-	}
-	
-	def getInterfaceName(String modelName){
-		"I"+modelName.toFirstUpper+"Adapter"
-	}
-	
-	def getUsageClassName(String modelName){
-		modelName.toFirstUpper+"Usage"
-	}
-	
-	def String compileInterface(SminvcbModel model){
-		'''
-		package sminvcb;
-		// Interface describes expectation of state-machine 
-		// on the implementation code
-		//
-		
-		public interface «model.name.interfaceName» {
-			«FOR cv:model.cvd.cvars»
-				public int «cv.name»();
-			«ENDFOR»
-		}
-		'''
-	}
-	
-		def String compileUsage(SminvcbModel model){
-			'''
-			package sminvcb;
-
-			public class «model.name.usageClassName» {
-				
-				public static void doSmth(){
-					System.out.println("hello World");
-				}
-			}
-			'''
-		}
 	
 }

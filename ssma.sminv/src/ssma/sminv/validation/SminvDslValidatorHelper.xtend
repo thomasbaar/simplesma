@@ -1,12 +1,7 @@
 package ssma.sminv.validation
 
 import com.google.inject.Inject
-import org.eclipse.emf.ecore.EReference
-
 import ssma.fml.validation.FmlDslValidatorHelper
-import ssma.fml.typing.TermType
-
-import ssma.sminv.typing.TermTypeProviderWithVar
 
 class SminvDslValidatorHelper extends FmlDslValidatorHelper {
 

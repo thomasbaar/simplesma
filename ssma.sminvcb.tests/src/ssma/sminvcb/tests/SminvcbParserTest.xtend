@@ -56,7 +56,8 @@ class SminvcbParserTest {
 			               transitions  start => a;
 			                            a => b ev1 [3 < 5];
 		'''
-	val inp1_Sec = '''refers_to  myprojsminv
+	val inp1_Sec = '''project cb refers_to  myprojsminv
+						adapter_class ""
 						code_vars
 						state_preds
 						global_preds
@@ -66,13 +67,15 @@ class SminvcbParserTest {
 	//
 	// Incorrect variants of inp1_Sec
 	//
-	val inp1_Sec1 = '''refers_to  myprojsminv
+	val inp1_Sec1 = '''project cb refers_to  myprojsminv
+						adapter_class ""
 						code_vars c_s c_s //double name
 						state_preds
 						global_preds
 	'''
 	
-	val inp1_Sec2 = '''refers_to  myprojsminv
+	val inp1_Sec2 = '''project cb refers_to  myprojsminv
+						adapter_class ""
 						import myprojsminv.*;
 						code_vars  c_s v // overlap with var
 						                 // becomes an error only by the import ?!
@@ -80,7 +83,8 @@ class SminvcbParserTest {
 						global_preds
 	'''
 
-	val inp1_Sec3 = '''refers_to  myprojsminv
+	val inp1_Sec3 = '''project cb refers_to  myprojsminv
+						adapter_class ""
 						import myprojsminv.*;
 						code_vars  
 						state_preds
@@ -88,7 +92,8 @@ class SminvcbParserTest {
 						global_preds
 	'''
 	
-	val inp1_Sec4 = '''refers_to  myprojsminv
+	val inp1_Sec4 = '''project cb refers_to  myprojsminv
+						adapter_class ""
 						import myprojsminv.*;
 						code_vars  
 						state_preds
@@ -96,7 +101,8 @@ class SminvcbParserTest {
 							bla: 5; // no bool
 	'''
 	
-	val inp1_Sec5 = '''refers_to  myprojsminv
+	val inp1_Sec5 = '''project cb refers_to  myprojsminv
+						adapter_class ""
 						import myprojsminv.*;
 						code_vars  
 						state_preds
@@ -106,7 +112,7 @@ class SminvcbParserTest {
 	
 	
 	
-	val inp2_First = '''project sminv_stack
+	val inp2_First = '''project cb project sminv_stack
 							vars num
 			               	states start isEmpty nonEmpty
 			               	events push pop
@@ -119,10 +125,11 @@ class SminvcbParserTest {
 		'''
 	val inp2_Sec = '''project sminv_state_codebridge 
 						refers_to sminv_stack
+						adapter_class ""
 						import sminv_stack.*;
 						code_vars c_s
 						state_preds
-							isEmpty: c_s==0;
+							isEmpty: c_s == 0;
 							nonEmpty: c_s>0;
 						global_preds
 							def_num : num == c_s;

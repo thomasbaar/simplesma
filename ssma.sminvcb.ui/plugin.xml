@@ -249,7 +249,7 @@
 	<extension
         point="org.eclipse.ui.handlers">
      <handler
-           class=" ssma.sminvcb.ui.SminvcbDslExecutableExtensionFactory: ssma.sminvcb.ui.handler.SimulationHandler"
+           class="ssma.sminvcb.ui.SminvcbDslExecutableExtensionFactory: ssma.sminvcb.ui.handler.SimulationHandler"
            commandId="ssma.sminvcb.ui.handler.SimulationCommand">
      </handler>
 	</extension>

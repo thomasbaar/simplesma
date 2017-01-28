@@ -52,7 +52,6 @@ class SimulationHandler extends AbstractHandler implements IHandler {
 
 				executor.process(r)
 			}
-
 		}
 	}
 

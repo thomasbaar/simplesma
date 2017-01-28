@@ -1,19 +1,24 @@
 package ssma.sminv.eval
 
-import ssma.sminv.sminvDsl.NegFml
+import ssma.fml.fmlDsl.AndFml
+import ssma.fml.fmlDsl.CompareFml
+import ssma.fml.fmlDsl.EquivFml
+import ssma.fml.fmlDsl.ImpliesFml
+import ssma.fml.fmlDsl.MultDiv
+import ssma.fml.fmlDsl.OrFml
+import ssma.fml.fmlDsl.PlusMinus
+import ssma.fml.fmlDsl.Term
 import ssma.sminv.sminvDsl.BoolConstant
 import ssma.sminv.sminvDsl.Compound
 import ssma.sminv.sminvDsl.IntConstant
+import ssma.sminv.sminvDsl.NegFml
 import ssma.sminv.sminvDsl.VarRef
-import ssma.sminv.typing.TermTypeProviderWithVar
-import com.google.inject.Inject
-import ssma.fml.typing.TermTypeProvider
 
 class TermEvalProvider {
 //	@Inject extension static TermTypeProviderWithVar
 	
 	
-	def static boolean evalBool(ssma.fml.fmlDsl.Term e, Binding b){
+	def static boolean evalBool(Term e, Binding b){
 		switch(e){
 			NegFml : ! evalBool(e.t,b)
 			ssma.fml.fmlDsl.NegFml: ! evalBool(e.t,b)
@@ -23,17 +28,17 @@ class TermEvalProvider {
 //			ssma.fml.fmlDsl.Compound: if(e.typeFor==TermTypeProvider.boolType){evalBool(e.t,b)}else{throw new IllegalStateException("wrong eval")}
 			Compound: evalBool(e.t,b)
 			ssma.fml.fmlDsl.Compound: evalBool(e.t,b)
-			ssma.fml.fmlDsl.EquivFml: evalBool(e.left,b) == evalBool(e.right,b)
-			ssma.fml.fmlDsl.ImpliesFml: ( ! evalBool(e.left,b)) || evalBool(e.right,b)
-			ssma.fml.fmlDsl.OrFml: evalBool(e.left,b) || evalBool(e.right,b)
-			ssma.fml.fmlDsl.AndFml: evalBool(e.left,b) && evalBool(e.right,b)
-			ssma.fml.fmlDsl.CompareFml: internEvalCompare(e,b)
+			EquivFml: evalBool(e.left,b) == evalBool(e.right,b)
+			ImpliesFml: ( ! evalBool(e.left,b)) || evalBool(e.right,b)
+			OrFml: evalBool(e.left,b) || evalBool(e.right,b)
+			AndFml: evalBool(e.left,b) && evalBool(e.right,b)
+			CompareFml: internEvalCompare(e,b)
 			default: throw new IllegalStateException("unexpected type of " + e)
 		}
 	}
 	
 	
-	def static int evalInt(ssma.fml.fmlDsl.Term e, Binding b){
+	def static int evalInt(Term e, Binding b){
 		switch(e){
 			IntConstant : e.value
 			ssma.fml.fmlDsl.IntConstant : e.value
@@ -42,13 +47,13 @@ class TermEvalProvider {
 //			ssma.fml.fmlDsl.Compound: if(e.typeFor==TermTypeProvider.intType){evalInt(e.t,b)}else{throw new IllegalStateException("wrong eval")}
 			Compound: evalInt(e.t,b)
 			ssma.fml.fmlDsl.Compound: evalInt(e.t,b)
-			ssma.fml.fmlDsl.PlusMinus:  internEvalPlusMinus(e,b)
-			ssma.fml.fmlDsl.MultDiv:  internEvalMultDiv(e,b)
+			PlusMinus:  internEvalPlusMinus(e,b)
+			MultDiv:  internEvalMultDiv(e,b)
 			default: throw new IllegalStateException("unexpected type of " + e)
 		}
 	}
 	
-	def private static boolean internEvalCompare(ssma.fml.fmlDsl.CompareFml e, Binding b){
+	def private static boolean internEvalCompare(CompareFml e, Binding b){
 		val left = evalInt(e.left,b)
 		val right = evalInt(e.right,b)
 		
@@ -62,7 +67,7 @@ class TermEvalProvider {
 		}
 	}
 	
-	def private static int internEvalPlusMinus(ssma.fml.fmlDsl.PlusMinus e, Binding b){
+	def private static int internEvalPlusMinus(PlusMinus e, Binding b){
 		val left = evalInt(e.left,b)
 		val right = evalInt(e.right,b)
 		
@@ -73,7 +78,7 @@ class TermEvalProvider {
 		}
 	}
 
-	def private static int internEvalMultDiv(ssma.fml.fmlDsl.MultDiv e, Binding b){
+	def private static int internEvalMultDiv(MultDiv e, Binding b){
 		val left = evalInt(e.left,b)
 		val right = evalInt(e.right,b)
 		

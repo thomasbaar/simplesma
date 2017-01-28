@@ -23,6 +23,7 @@ class SminvcbDslValidator extends AbstractSminvcbDslValidator {
 	@Inject extension SminvcbDslValidatorHelper
 	
 	public static val STATEPRED_ONLY_WITH_CODEVARS = "statepred.only.with.codevars"
+	public static val MISSING_ADAPTERCLASS = "missing.adapterclass"
 	
 	@Check(NORMAL)
 	def checkStatePredAreBoolean(StatePred p) {
@@ -35,6 +36,7 @@ class SminvcbDslValidator extends AbstractSminvcbDslValidator {
 	}
 
 	@Check(NORMAL)
+//	@Check(EXPENSIVE)  //TODO: does not work :-(
 	def checkStatePredOnlyWithCodevars(StatePred p) {
 		val stateVars = p.getAllContentsOfType(VarRef).filter[! v.isCodeVar]
 		if(	! stateVars.isEmpty){
@@ -48,6 +50,25 @@ class SminvcbDslValidator extends AbstractSminvcbDslValidator {
 //			}
 		}
 	}
+	
+	@Check(NORMAL)
+//	@Check(EXPENSIVE)  //TODO: does not work :-(
+	def checkAdapterClassAvailable(SminvcbModel m) {
+		if( m.facn != null && ! m.facn.empty){
+			try{
+				 val c = Class.forName(m.facn)
+ 		    	val Object o = c.newInstance()
+ 		    	o.toString  // check whether o is null (in this case NPE)
+			}catch(Exception e){
+				error(
+					"Adapter class not available or cannot be instantiated with Default-Constructor",
+					SminvcbDslPackage.Literals.SMINVCB_MODEL__FACN,
+					MISSING_ADAPTERCLASS
+				)
+			}
+		}
+	}
+		
 	
 ////	@Check(EXPENSIVE)
 //	@Check(NORMAL)

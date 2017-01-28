@@ -45,7 +45,7 @@ public class Driver_Stack {
 	public void start() {
 		for (String ev : eventList) {
 			// informing the statemachine about the coming event
-			sm.evOccurred(ev); //still reported in the pre-state
+			sm.evOccurred_pre(ev); //still reported in the pre-state
 			
 			switch (ev) {
 			case "push":
@@ -57,7 +57,7 @@ public class Driver_Stack {
 			default:
 				throw new IllegalArgumentException("Unknown event " + ev);
 			}
-			System.out.println("Driver called" + ev);
+			System.out.println("Driver called " + ev);
 			delay();
 		}
 	}

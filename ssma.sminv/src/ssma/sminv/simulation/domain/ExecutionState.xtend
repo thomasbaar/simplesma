@@ -1,23 +1,16 @@
 package ssma.sminv.simulation.domain
 
-import com.google.inject.Inject
 import java.time.Instant
 import ssma.sminv.eval.Binding
-//import ssma.sminv.eval.TermEvalProvider
 import ssma.sminv.sminvDsl.Event
 import ssma.sminv.sminvDsl.SminvModel
 import ssma.sminv.sminvDsl.State
 import ssma.sminv.sminvDsl.Transition
-//import ssma.sminv.util.SminvDslUtil
 
-import static extension org.eclipse.xtext.EcoreUtil2.*
-
-import static extension ssma.sminv.util.SminvDslUtil_Static.*
 import static extension ssma.sminv.eval.TermEvalProvider.*
+import static extension ssma.sminv.util.SminvDslUtil_Static.*
 
 class ExecutionState {
-//	@Inject extension SminvDslUtil
-//	@Inject extension TermEvalProvider
 
 	var Instant creationTime
 	var State activeState
@@ -61,18 +54,6 @@ class ExecutionState {
 		var Iterable<Transition> outTransitions
 
 		outTransitions = preState.outgoingTransitions.filter[ev == event]
-//		if (event == null) {
-//			// TODO: have trouble with injection here
-//			outTransitions = preState.outgoingTransitions.filter[ev == null]
-//////			outTransitions = preState.outgoingTransitions
-//////			outTransitions = preState.root.transitions.filter[pre == preState]
-////			val root = preState.getContainerOfType(typeof(SminvModel))
-//////			val trans = root.transitions
-////			val trans = root.td.trans
-////			outTransitions = trans.filter[ev == null]
-//		} else {
-//			outTransitions = preState.outgoingTransitions.filter[ev == event]
-//		}
 		if (outTransitions.isEmpty) {
 			throw new CreationException(CreationException.NO_OUTTRANS_FOR_EVENT) // OK
 		}
@@ -103,6 +84,10 @@ class ExecutionState {
 
 	def State getActiveState() {
 		activeState
+	}
+
+	def Transition getPreTrans() {
+		preTrans
 	}
 
 	private def evalActionsOnBinding(Transition t, Binding oldBinding) {

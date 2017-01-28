@@ -1,6 +1,7 @@
 package exa.stack.adapter;
 
 import java.util.Arrays;
+import java.util.List;
 
 import ssma.sminvcb.adapter.IAppAdapter;
 import ssma.sminvcb.adapter.ISmAdapter;
@@ -16,7 +17,7 @@ public class AppAdapter_Stack implements IAppAdapter{
 		adaptee = new Stack1();
 		driver = new Driver_Stack(adaptee,sm);
 		//TODO: make this is call from outside
-		driver.setEventList(Arrays.asList("push", "pop", "push", "push", "pop", "push" ));
+		driver.setEventList(Arrays.asList("push", "pop", "push", "push", "pop", "push", "pop", "pop", "push", "pop" ));
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class AppAdapter_Stack implements IAppAdapter{
 	@Override
 	public int getVal(String varName) {
 		switch (varName){
-		case "n": return adaptee.getLength();
+		case "c_s": return adaptee.getLength();
 		default: throw new IllegalArgumentException("unknown varname " + varName);
 		}
 	}
@@ -35,6 +36,12 @@ public class AppAdapter_Stack implements IAppAdapter{
 	@Override
 	public void debug(String msg) {
 		System.out.println("Message from AppAdapter_Stack: " + msg);
+	}
+
+	@Override
+	public void setEventList(List<String> evl) {
+		driver.setEventList(evl);
+		
 	}
 
 }

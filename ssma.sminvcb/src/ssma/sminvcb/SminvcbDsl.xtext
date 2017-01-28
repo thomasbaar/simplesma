@@ -36,6 +36,12 @@ import "http://www.sminv.ssma/SminvDsl"
 // - add MF-dep from ..tests to ssma.sminv
 // - add MF-dep from ..tests to ssma.fml
 // - and entry for TermTypeProvider in ...DslRuntimeModule
+//
+// - add MF-dep to ssma.sminvcb.adapter 
+// - add MF-dep to ssma.sminvcb.examples.imp TODO: get rid of this with dynamic classloading the user's implementation
+//
+
+
 
 SminvcbModel:
 	'project' name=ID
@@ -45,6 +51,7 @@ SminvcbModel:
 	cvd=CodeVarDecl
 	spd=StatePredDecl  // how to recognize a state in the code-statespace
 	gpd=GlobalPredDecl
+	evt=EventTrace?
 ;
 
 
@@ -91,5 +98,8 @@ GlobalPred:
 	name=ID ':' pred=Term ';'
 ;
 
+EventTrace:
+	"events" l+=[Event]+
+;
 
 
