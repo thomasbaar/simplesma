@@ -1,0 +1,11 @@
+project stack 
+
+vars num 
+states start isEmpty nonEmpty 
+events push pop 
+transitions 
+	start => isEmpty ; 
+	isEmpty => nonEmpty push / num += 1 ; 
+	nonEmpty => nonEmpty push / num += 1 ; 
+	nonEmpty => nonEmpty pop [ num > 1 ] / num -= 1 ; 
+	nonEmpty => isEmpty pop [ num == 1 ] / num -= 1 ;
