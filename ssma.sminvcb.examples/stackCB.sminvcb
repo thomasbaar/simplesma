@@ -10,7 +10,7 @@ state_preds
 //	nonEmpty: num > 0;  // not only code-vars
 	nonEmpty: c_s > 0;
 	isEmpty : c_s == 0; 
-	     
+	      
 global_preds	     
 	def_num: num  == c_s;    
 	
