@@ -245,6 +245,52 @@
 			class="ssma.sminvcb.ui.SminvcbDslExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
 			fileExtensions="sminvcb"/>
 	</extension>
+	<!-- START addition TBAAR-->
+	<extension
+        point="org.eclipse.ui.handlers">
+     <handler
+           class=" ssma.sminvcb.ui.SminvcbDslExecutableExtensionFactory: ssma.sminvcb.ui.handler.SimulationHandler"
+           commandId="ssma.sminvcb.ui.handler.SimulationCommand">
+     </handler>
+	</extension>
+	<extension
+        point="org.eclipse.ui.commands">
+        <command name="Simulate SM Model"
+              id="ssma.sminvcb.ui.handler.SimulationCommand">
+        </command>
+  	</extension>
+	<extension point="org.eclipse.ui.menus">
+    <menuContribution locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">
+        <command
+            commandId="ssma.sminvcb.ui.handler.SimulationCommand"
+            style="push">
+            <visibleWhen
+                  checkEnabled="false">
+                  <iterate>
+       <adapt type="org.eclipse.core.resources.IResource">
+          <test property="org.eclipse.core.resources.name" 
+                value="*.sminvcb"/>
+       </adapt>
+    </iterate>
+            </visibleWhen>
+        </command>
+    </menuContribution>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+    <menuContribution locationURI="popup:#TextEditorContext?after=additions">
+        <command
+            commandId="ssma.sminvcb.ui.handler.SimulationCommand"
+            style="push">
+            <visibleWhen
+                      checkEnabled="false">
+                   <reference
+                         definitionId="ssma.sminvcb.SminvcbDsl.Editor.opened">
+                   </reference>
+                </visibleWhen>
+        </command>
+    </menuContribution>
+</extension>
+	<!-- END addition TBAAR-->
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
 			category="ssma.sminvcb.SminvcbDsl"

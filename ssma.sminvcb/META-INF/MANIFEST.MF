@@ -17,15 +17,16 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  ssma.fml;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: ssma.sminvcb.sminvcbDsl,
- ssma.sminvcb.sminvcbDsl.impl,
- ssma.sminvcb.validation,
- ssma.sminvcb.parser.antlr.internal,
- ssma.sminvcb,
- ssma.sminvcb.scoping,
- ssma.sminvcb.services,
- ssma.sminvcb.serializer,
+Export-Package: ssma.sminvcb,
+ ssma.sminvcb.execution,
  ssma.sminvcb.generator,
+ ssma.sminvcb.parser.antlr,
+ ssma.sminvcb.parser.antlr.internal,
+ ssma.sminvcb.scoping,
+ ssma.sminvcb.serializer,
+ ssma.sminvcb.services,
+ ssma.sminvcb.sminvcbDsl,
+ ssma.sminvcb.sminvcbDsl.impl,
  ssma.sminvcb.sminvcbDsl.util,
- ssma.sminvcb.parser.antlr
+ ssma.sminvcb.validation
 Import-Package: org.apache.log4j

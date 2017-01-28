@@ -12,6 +12,7 @@ import ssma.sminvcb.sminvcbDsl.StatePred
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension ssma.sminvcb.util.SminvcbDslUtil.*
+import ssma.sminvcb.sminvcbDsl.SminvcbModel
 
 /**
  * This class contains custom validation rules. 
@@ -47,6 +48,24 @@ class SminvcbDslValidator extends AbstractSminvcbDslValidator {
 //			}
 		}
 	}
+	
+////	@Check(EXPENSIVE)
+//	@Check(NORMAL)
+//	def poorMansInvocation(SminvcbModel m) {
+////		println("Hello from Validation")
+//	
+//			myInvoke("mylib.MyLib")
+//	}
+//	
+//	def myInvoke(String cn) {
+//		
+//		val parentCL = this.class.getClassLoader()
+//		
+//		val clazz = parentCL.loadClass(cn)
+//		
+//		val method = clazz.getMethod("doSmth");
+//		method.invoke(null);
+//	}
 	
 	
 }

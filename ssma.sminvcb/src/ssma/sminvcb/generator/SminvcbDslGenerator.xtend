@@ -21,8 +21,21 @@ class SminvcbDslGenerator extends AbstractGenerator {
 				.filter(typeof(SminvcbModel)).head
 				
 				
-		fsa.generateFile(model.name.interfaceName+'.java', model.compileInterface)
-		fsa.generateFile(model.name.usageClassName+'.java', model.compileUsage)
+		fsa.generateFile("sminvcb/"+model.name.interfaceName+'.java', model.compileInterface)
+		fsa.generateFile("sminvcb/"+model.name.usageClassName+'.java', model.compileUsage)
+
+//		myInvoke("sminvcb."+model.name.usageClassName)
+//		myInvoke("mylib.MyLib")
+	}
+	
+	def myInvoke(String cn) {
+		
+		val parentCL = this.class.getClassLoader()
+		
+		val clazz = parentCL.loadClass(cn)
+		
+		val method = clazz.getMethod("doSmth");
+		method.invoke(null);
 	}
 	
 	def getInterfaceName(String modelName){
@@ -35,6 +48,7 @@ class SminvcbDslGenerator extends AbstractGenerator {
 	
 	def String compileInterface(SminvcbModel model){
 		'''
+		package sminvcb;
 		// Interface describes expectation of state-machine 
 		// on the implementation code
 		//
@@ -49,8 +63,13 @@ class SminvcbDslGenerator extends AbstractGenerator {
 	
 		def String compileUsage(SminvcbModel model){
 			'''
+			package sminvcb;
+
 			public class «model.name.usageClassName» {
 				
+				public static void doSmth(){
+					System.out.println("hello World");
+				}
 			}
 			'''
 		}

@@ -40,6 +40,7 @@ import "http://www.sminv.ssma/SminvDsl"
 SminvcbModel:
 	'project' name=ID
 	'refers_to' sminvModel=[SminvModel]
+	'adapter_class' facn=STRING  //full adapter class name
 	imports+=Import*  //
 	cvd=CodeVarDecl
 	spd=StatePredDecl  // how to recognize a state in the code-statespace

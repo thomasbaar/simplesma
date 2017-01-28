@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>312</x>
+      <y>128</y>
+      <w>80</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*s*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>368</x>
+      <y>104</y>
+      <w>80</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*s*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>928</x>
+      <y>168</y>
+      <w>696</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+*ssma.sminvcb.adapter*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1008</x>
+      <y>232</y>
+      <w>376</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>*cb.adapter*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1024</x>
+      <y>264</y>
+      <w>136</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*IAppAdapter*
+--
+init(ISmAdapter)
+start()
+getVal(varName)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1200</x>
+      <y>272</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*ISmAdapter*
+--
+evOccurred(evName)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1032</x>
+      <y>456</y>
+      <w>520</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>*exa.stack*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1056</x>
+      <y>488</y>
+      <w>464</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>*adapter*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>528</y>
+      <w>144</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*AppAdapter_Stack*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>0</y>
+      <w>152</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>360</y>
+      <w>88</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1056</x>
+      <y>624</y>
+      <w>312</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>*app*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>664</y>
+      <w>80</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*Stack1*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1104</x>
+      <y>584</y>
+      <w>80</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1
+r2=adaptee</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1360</x>
+      <y>528</y>
+      <w>112</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*Driver_Stack*
+--
+eventList:List</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1216</x>
+      <y>544</y>
+      <w>160</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+&lt;&lt;createsAndStarts&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;180.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>584</y>
+      <w>264</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1
+r2=target</panel_attributes>
+    <additional_attributes>310.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>544</y>
+      <w>192</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*SimulationHandler*
+--
+execute(ExecutionEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>344</y>
+      <w>672</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>820.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1320</x>
+      <y>344</y>
+      <w>80</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1
+r2=sm</panel_attributes>
+    <additional_attributes>80.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>216</x>
+      <y>16</y>
+      <w>112</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Note..
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>408</x>
+      <y>736</y>
+      <w>296</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>- triggered by context-menu in sminvcb-editor
+- loads the right sminvcb-Resource
+  and delegates further
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>448</y>
+      <w>264</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>310.0;10.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>312</y>
+      <w>440</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1
+r2=adapter</panel_attributes>
+    <additional_attributes>10.0;110.0;530.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>568</x>
+      <y>216</y>
+      <w>328</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>- provides all what is needed by sm (executor)
+to communicate with implementation (app)
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>248</y>
+      <w>152</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>736</x>
+      <y>736</y>
+      <w>312</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>- contains all code needed for example 'Stack'
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>928</x>
+      <y>480</y>
+      <w>120</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>984</x>
+      <y>816</y>
+      <w>312</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>- the application 'Stack' itself
+  (might also reside in different package)
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1048</x>
+      <y>688</y>
+      <w>136</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1632</x>
+      <y>600</y>
+      <w>312</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>- driver simulates the inputs on application
+- - input-sequence is set in eventList
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1464</x>
+      <y>552</y>
+      <w>184</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;210.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1320</x>
+      <y>344</y>
+      <w>344</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;410.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1648</x>
+      <y>448</y>
+      <w>312</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>- link to communicate events to statemachine
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>360</y>
+      <w>128</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*Trace*
+--
+evOccurred(Event)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>312</y>
+      <w>128</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*SminvModel*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>368</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1
+r2=trace</panel_attributes>
+    <additional_attributes>180.0;30.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>520</y>
+      <w>128</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>*TraceListener*
+--
+info()
+warn()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>416</y>
+      <w>72</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=*
+r2=listener</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>392</x>
+      <y>320</y>
+      <w>224</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+*ssma.sminvcb*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>648</x>
+      <y>368</y>
+      <w>224</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+*ssma.sminvcb.ui*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>392</y>
+      <w>192</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>*SminvcbDslExecutor*
+--
+process(Resource)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>56</x>
+      <y>696</y>
+      <w>296</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>- triggered by conetext-menu in sminvcb-editor
+
+- executes the statemachine
+- waits for evOccurred()-messages
+- - knows that these messages are invoked
+     when the app is still in the pre-state
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>424</y>
+      <w>128</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+&lt;&lt;delegates&gt;&gt;</panel_attributes>
+    <additional_attributes>90.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>600</y>
+      <w>208</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>240.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>920</x>
+      <y>424</y>
+      <w>696</w>
+      <h>368</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+*ssma.sminv.examples.impl*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>448</y>
+      <w>552</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+&lt;&lt;creates&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;670.0;150.0</additional_attributes>
+  </element>
+</diagram>
