@@ -31,13 +31,22 @@ class SminvcbDslExecutor implements Trace.ITraceListener, ISmAdapter{
 	//TODO: try to understand why only one resource (sminvcb) is sufficient here
 	//     (and I can navigate even to the referred sminv-model)
 	def process(Resource resource){
-		model = resource.allContents
+		val aModel = resource.allContents
 				.filter(typeof(SminvcbModel)).head
+				
 				
 		println("MYLOG : in executor.process()")		
 				
-		println("MYLOG cb-model is : " + printer.stringRepr(model))
+		println("MYLOG cb-model is : " + printer.stringRepr(aModel))
 
+		processModel(aModel)
+		
+		println("MYLOG :executor.process() finished")		
+	}
+	
+	// the argument is for testing purpose
+	def processModel(SminvcbModel aModel){
+		model = aModel
 		//fill event map
 		model.sminvModel.ed.events.forEach[ev| eventForName.put(ev.name, ev)]
 		
@@ -55,8 +64,6 @@ class SminvcbDslExecutor implements Trace.ITraceListener, ISmAdapter{
 		
 		appAdapter.start()
 		
-		
-		println("MYLOG :executor.process() finished")		
 	}
 
 

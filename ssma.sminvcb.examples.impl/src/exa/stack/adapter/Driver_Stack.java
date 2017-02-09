@@ -29,7 +29,8 @@ public class Driver_Stack {
 	}
 
 	public Driver_Stack(Stack1 target, ISmAdapter sm) {
-		this(target, sm, 500);
+//		this(target, sm, 500);
+		this(target, sm, 0);
 	}
 
 	public Driver_Stack(Stack1 target, ISmAdapter sm, int delay) {
