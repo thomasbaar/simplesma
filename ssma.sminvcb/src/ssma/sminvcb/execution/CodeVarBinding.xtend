@@ -4,17 +4,24 @@ import ssma.sminv.eval.Binding
 import ssma.sminvcb.adapter.IAppAdapter
 import ssma.sminv.sminvDsl.Var
 
-class CodeVarBinding  extends Binding{
+import static extension ssma.sminvcb.util.SminvcbDslUtil.*
+
+class CodeVarBinding extends Binding{
 	
 	var IAppAdapter adapter
+	var Binding noneCodeVarBinding
 	
-	new(IAppAdapter ad) {
+	new(IAppAdapter ad, Binding binding) {
 		super()
 		adapter=ad
+		noneCodeVarBinding=binding
 	}
 	
 	override int getVal(Var v){
-		adapter.getVal(v.name)
+		if (v.isCodeVar)
+			return adapter.getVal(v.name)
+		else
+			return noneCodeVarBinding.getVal(v)	
 	}
 	
 }

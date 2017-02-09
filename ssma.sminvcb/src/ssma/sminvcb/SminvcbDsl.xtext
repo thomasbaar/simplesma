@@ -65,7 +65,7 @@ QualifiedNameWithWildcard: QualifiedName '.*'? ;
 CodeVarDecl:
 	{CodeVarDecl}
 	'code_vars'  
-	// next three line do not work sind in Terms the 
+	// next three line do not work because in Terms the 
 	// parser could not distinguish [CodeVar] from [Var]
 	// since both references use plain ID
 		//cvars+=CodeVar*;
@@ -75,9 +75,7 @@ CodeVarDecl:
 		cvars+=Var*
 ;		
 
-// state-characteristic predicates in terms of code_vars
-// Should we allow multiple preds for state? 
-// TODO: add check that only codeVars are used
+// StatePreds are special form of global_preds and have form (inState(state) implies ...)
 StatePredDecl:
 	{StatePredDecl}
 	'state_preds'  
@@ -88,7 +86,7 @@ StatePred:
 ;
 
 // kind of invariants that have to be valid in all states
-// (usually the definition var = f(codeVar)
+// note that in many cases, statePreds are sufficient 
 GlobalPredDecl:
 	{GlobalPredDecl}
 	'global_preds'  

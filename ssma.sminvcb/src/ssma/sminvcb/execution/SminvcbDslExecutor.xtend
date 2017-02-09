@@ -14,6 +14,7 @@ import ssma.sminv.sminvDsl.State
 
 import static extension ssma.sminv.eval.TermEvalProvider.*
 import static extension ssma.sminv.util.SminvDslUtil_Static.*
+import ssma.fml.fmlDsl.Term
 
 class SminvcbDslExecutor implements Trace.ITraceListener, ISmAdapter{
 	 
@@ -97,25 +98,42 @@ class SminvcbDslExecutor implements Trace.ITraceListener, ISmAdapter{
 		trace.occurred(eventForName.get(evName))
 	}
 	
+	
+	/**
+	 * We check whether state-machine and implementation are still in sync 
+	 * according to the bridge.
+	 */
 	def private checkCodeBridgePredicates() {
 		val State currentState=trace.last.activeState
 		
 		val predsForCurrentState = model.spd.spreds.filter(sp|sp.state==currentState)
 
-		val binding = new CodeVarBinding(appAdapter)
+		val binding = new CodeVarBinding(appAdapter, trace.last.binding)
+		
+		// checking the state-preds
 		for(p:predsForCurrentState){
-			if (!evalBool(p.pred,binding)){
-				// the last step was wrong
-				error("Expected to be in state " + currentState.name 
-				      + " but predicate in codebridge failed"  
-//				      + " Previous transition was " + trace.last.preTrans.printName  //causes NPE
-				    )
-				throw new CodeBridgeExecutionException("App behaves differently than statemachine")
-			}
+			checkPredTerm(p.state.name, p.pred, binding, currentState)
+		}
+		
+		// checking the global_preds
+		val globalPreds = model.gpd.gpreds
+		for(p:globalPreds){
+			checkPredTerm(p.name, p.pred, binding, currentState)
 		}
 
 	}
 	
+	
+	def private checkPredTerm(String name, Term t, CodeVarBinding b, State currentState){
+			if (!evalBool(t,b)){
+				// the last step was wrong
+				error("Expected to be in state " + currentState.name 
+				      + " but predicate " + name + "in codebridge failed"  
+				    )
+				throw new CodeBridgeExecutionException("App behaves differently than statemachine")
+			}
+		
+	}
 	
 	
 	
