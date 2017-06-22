@@ -98,7 +98,7 @@ class SminvcbParserTest extends SminvcbParserUtil{
 
 
 	@Test def void checkStack() {
-		val model = parseComposedModel(stack, stackcb)
+		val model = parseComposedModel(stackspec_concrete, stackcb_concrete)
 		validationTester.assertNoIssues(model)
 	}
 	

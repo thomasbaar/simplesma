@@ -494,7 +494,7 @@ checkCodeBridgePreds()</panel_attributes>
       <w>280</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>might throw excpetion if 
+    <panel_attributes>might throw exception if 
 deviating state is detected
 bg=yellow</panel_attributes>
     <additional_attributes/>

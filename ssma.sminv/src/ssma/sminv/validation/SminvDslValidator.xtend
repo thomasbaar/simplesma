@@ -133,73 +133,79 @@ class SminvDslValidator extends AbstractSminvDslValidator {
 //		}
 //	}
 
-	// here we use PRINCESS
-	@Check(NORMAL) // TODO: substitute with EXPENSIVE here
-	def check_InvPreservation_ForInvariant(Inv inv) {
-		val incomingTrans = inv.state.incomingTransitions
+//
+//	// here we use PRINCESS
+//
+//
 
-		for (Transition t : incomingTrans) {
-			val po = t.getPO_InvPreservation_ForPostInvariant(inv).princessRepr
-			var result = princessProver.prove(po,
-				"InvPreservation-PO for transition " + t.toString() + " and inv " + inv.toString)
+// temporarily commented out for accelerating mutation tests
 
-			if (!result.isProven) {
-				error(
-					"NOT INVARIANT-PRESERVING: the transition " + t.printName +
-						" does not preserve this invariant, if the transition fires in the following pre-state: " +
-						result.counterexample, SminvDslPackage.Literals.INV__INV,
-					INCOMING_TRANSITION_MUST_PRESERVE_INVARIANT)
-				}
-			}
-		}
-
-		// here we use PRINCESS
-		@Check(NORMAL)
-		def check_OutgoingTransitionOnNondetermismNew(ssma.sminv.sminvDsl.State s) {
-			val outgoingsGroupedByEvent = s.outgoingTransitions.groupBy[t|if(t.ev == null) "" else t.ev.name]
-
-			for (String eventName : outgoingsGroupedByEvent.keySet()) {
-				val group = outgoingsGroupedByEvent.get(eventName)
-
-				val Iterable<Pair<Transition, Transition>> pairs = getPairwiseCombinations(group)
-				for (Pair<Transition, Transition> p : pairs) {
-					val t1 = p.key
-					val t2 = p.value
-					val poTerm = t1.getPO_NonDeterminism(t2)
-					val po = poTerm.princessRepr
-					var result = princessProver.prove(po, "NonDeterminism-PO")
-					if (!result.isProven) {
-						error(
-							"NON-DETERMINISM: the outgoing transitions " + t1.printName + " and " + t2.printName +
-								"are in conflict and cold both fire in the following pre-state: " +
-								result.counterexample,
-								SminvDslPackage.Literals.STATE__NAME,
-								OUTGOING_TRANSITIONS_MUST_NOT_BE_NONDETERMINISTIC
-							)
-						}
-					}
-				}
-			}
-
-			private def Iterable<Pair<Transition, Transition>> getPairwiseCombinations(Iterable<Transition> group) {
-				if (group.size < 2)
-					return new ArrayList<Pair<Transition, Transition>>()
-				val t1 = group.head
-				group.tail.map[t2|t1 -> t2] + getPairwiseCombinations(group.tail)
-			}
-
-			// here we use PRINCESS
-			@Check(NORMAL) // TODO: substitute with EXPENSIVE here
-			def check_AliveTransition(Transition t) {
-				val po = t.PO_AliveTransition.princessRepr(false)
-				var result = princessProver.prove(po, "AliveTransition-PO for transition " + t.toString())
-
-				if (!result.isProven) {
-					error(
-						"DEAD TRANSITION: the transition " + t.printName +
-							" is dead; its guard together with the invariant(s) of the pre-state is not satisfiable",
-						SminvDslPackage.Literals.TRANSITION__G, TRANSITION_MUST_BE_ALIVE)
-				}
-			}
+//	@Check(NORMAL) // TODO: substitute with EXPENSIVE here
+//	def check_InvPreservation_ForInvariant(Inv inv) {
+//		val incomingTrans = inv.state.incomingTransitions
+//
+//		for (Transition t : incomingTrans) {
+//			val po = t.getPO_InvPreservation_ForPostInvariant(inv).princessRepr
+//			var result = princessProver.prove(po,
+//				"InvPreservation-PO for transition " + t.toString() + " and inv " + inv.toString)
+//
+//			if (!result.isProven) {
+//				error(
+//					"NOT INVARIANT-PRESERVING: the transition " + t.printName +
+//						" does not preserve this invariant, if the transition fires in the following pre-state: " +
+//						result.counterexample, SminvDslPackage.Literals.INV__INV,
+//					INCOMING_TRANSITION_MUST_PRESERVE_INVARIANT)
+//				}
+//			}
+//		}
+//
+//		// here we use PRINCESS
+//		@Check(NORMAL)
+//		def check_OutgoingTransitionOnNondetermismNew(ssma.sminv.sminvDsl.State s) {
+//			val outgoingsGroupedByEvent = s.outgoingTransitions.groupBy[t|if(t.ev == null) "" else t.ev.name]
+//
+//			for (String eventName : outgoingsGroupedByEvent.keySet()) {
+//				val group = outgoingsGroupedByEvent.get(eventName)
+//
+//				val Iterable<Pair<Transition, Transition>> pairs = getPairwiseCombinations(group)
+//				for (Pair<Transition, Transition> p : pairs) {
+//					val t1 = p.key
+//					val t2 = p.value
+//					val poTerm = t1.getPO_NonDeterminism(t2)
+//					val po = poTerm.princessRepr
+//					var result = princessProver.prove(po, "NonDeterminism-PO")
+//					if (!result.isProven) {
+//						error(
+//							"NON-DETERMINISM: the outgoing transitions " + t1.printName + " and " + t2.printName +
+//								"are in conflict and cold both fire in the following pre-state: " +
+//								result.counterexample,
+//								SminvDslPackage.Literals.STATE__NAME,
+//								OUTGOING_TRANSITIONS_MUST_NOT_BE_NONDETERMINISTIC
+//							)
+//						}
+//					}
+//				}
+//			}
+//
+//			private def Iterable<Pair<Transition, Transition>> getPairwiseCombinations(Iterable<Transition> group) {
+//				if (group.size < 2)
+//					return new ArrayList<Pair<Transition, Transition>>()
+//				val t1 = group.head
+//				group.tail.map[t2|t1 -> t2] + getPairwiseCombinations(group.tail)
+//			}
+//
+//			// here we use PRINCESS
+//			@Check(NORMAL) // TODO: substitute with EXPENSIVE here
+//			def check_AliveTransition(Transition t) {
+//				val po = t.PO_AliveTransition.princessRepr(false)
+//				var result = princessProver.prove(po, "AliveTransition-PO for transition " + t.toString())
+//
+//				if (!result.isProven) {
+//					error(
+//						"DEAD TRANSITION: the transition " + t.printName +
+//							" is dead; its guard together with the invariant(s) of the pre-state is not satisfiable",
+//						SminvDslPackage.Literals.TRANSITION__G, TRANSITION_MUST_BE_ALIVE)
+//				}
+//			}
 
 }

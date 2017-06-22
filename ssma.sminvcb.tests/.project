@@ -31,4 +31,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/exa/stack/app/Stack1.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/ssma.sminvcb.examples.impl/src/exa/stack/app/Stack1.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

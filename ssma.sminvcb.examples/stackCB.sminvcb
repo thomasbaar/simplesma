@@ -4,14 +4,17 @@ adapter_class "exa.stack.adapter.AppAdapter_Stack"
 				 		
 import stack.*; 
 
-// note that code_vars must be implemented by
-// appAdapter    
 code_vars c_s  // represents length of stack
 state_preds
-//	nonEmpty: 6;  //not bool
-//	nonEmpty: num > 0;  // not only code-vars
 	nonEmpty: c_s > 0;
 	isEmpty : c_s == 0; 
+	       
+	       
+	       
+	       
+	       
+	       
+	       
 	       
 global_preds	     
 	def_num: num  == c_s;    

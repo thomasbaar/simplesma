@@ -38,7 +38,7 @@ class SminvcbParserUtil {
 	
 	// stack example
 	
-	public  val stack= '''project sminv_stack
+	public  val stackspec_concrete= '''project sminv_stack
 							vars num
 			               	states start isEmpty nonEmpty
 			               	events push pop
@@ -49,7 +49,7 @@ class SminvcbParserUtil {
 			               		nonEmpty => nonEmpty pop [num > 1] /num -= 1;
 			               		nonEmpty => isEmpty pop [num==1] /num -= 1;
 		'''
-	public  val stackcb = '''project sminv_state_codebridge 
+	public  val stackcb_concrete = '''project sminv_state_codebridge 
 						refers_to sminv_stack
 						adapter_class "exa.stack.adapter.AppAdapter_Stack"
 						import sminv_stack.*;
@@ -57,8 +57,28 @@ class SminvcbParserUtil {
 						state_preds
 							isEmpty: c_s == 0;
 							nonEmpty: c_s>0;
-						global_preds
-							def_num : num == c_s;
+	//					global_preds
+	//						def_num : num == c_s;
+	'''
+	
+
+	public  val stackspec_abstract= '''project sminv_stack
+							vars num
+			               	states start init
+			               	events push pop
+			               	transitions  
+			               		start => init;
+			               		init => init push;
+			               		init => init pop;
+		'''
+	public  val stackcb_abstract = '''project sminv_state_codebridge 
+						refers_to sminv_stack
+						adapter_class "exa.stack.adapter.AppAdapter_Stack"
+						import sminv_stack.*;
+						code_vars c_s
+//						state_preds
+//							isEmpty: c_s == 0;
+//							nonEmpty: c_s>0;
 	'''
 	
 	
